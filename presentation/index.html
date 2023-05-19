@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>A11Y / Cofinpro / reveal.js</title>
+  <link rel="stylesheet" href="./css/reveal.css">
+
+  <!-- cofinpro styling -->
+  <link rel="stylesheet" href="./css/cofinpro.css" id="theme">
+  <!-- code highlighting -->
+  <link rel="stylesheet" href="../plugin/highlight/monokai.css">
+
+  <link rel="shortcut icon" type="image/png" href="./favicon-32x32.png">
+  <style>
+    .initially-trans {
+        color: transparent;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="reveal">
+    <div class="slides">
+
+      <section class="bg-lightblue brown" id="presentation-title">
+        <br/>
+        <hgroup>
+            <h1>A11Y FTW!</h1>
+            <p>
+                <strong>Alle</strong> wollen barrierefreie Webapplikationen.<br/>
+                <span class="fragment highlight-current-red initially-trans" data->Und besonders in der Entwicklung!</span>
+            </p>
+        </hgroup>
+      </section>
+
+      <section id="deckgroup-why">
+
+        <section class="bg-lightgreen">
+            <h2>Barrierefreiheit</h2>
+
+            <ul>
+                <li>Warum ... <span class="fragment red">Muss ich? Soll ich?</span></li>
+                <li>Wie ... <span class="fragment red">gehe ich das als Entwickler:in an?</span></li>
+                <li>Wann ... <span class="fragment red">im Projekt sollten wir das angehen?</span></li>
+                <li>Motivation ... <span class="fragment red">Will <b>ich</b> das? Was bringt <b>mir</b> das?</span></li>
+            </ul>
+
+            <aside class="notes" data-markdown>
+                - Warum? Rechtlich, Benutzer:innen, Moralisch! Bäh.
+                - Wie mache ich das überhaupt? (Screenreader ...)
+                - Wann?
+                - Wieso &rarr; jemand, der keine Einschränkungen hat!
+            </aside>
+
+
+        </section>
+
+        <section class="cpr-bg bg-balance">
+          <hgroup>
+            <h2 class="blue">Zum Warum?</h2>
+            <p class="blue">Mögliche Begründungen für Barrierefreiheit</p>
+          </hgroup>
+        </section>
+
+        <section class="cpr-bg bg-baloon">
+            <h3 class="red">Recht und Gesetz</h3>
+        </section>
+
+        <section data-background-image="images/gesetze-bg.jpg" data-background-size="33%" data-background-position="top left">
+            <div style="background-color: rgb(205 220 243 / 0.75); margin-top: 3em;">
+            <h3>Deutschland &amp; Europa</h3>
+
+            <ul>
+                <li>
+                    Behindertengleichstellungsgesetz (BGG)<br/>
+                    <span class="fragment">gilt seit 2002 für öff. Websites des Bundes</span>
+                    <br/>
+                </li>
+                <li>
+                    Barrierefreiheitsstärkungsgesetz (BFSG)<br/>
+                    <span class="fragment">Produkte und Dienstleistungen, die nach dem 28. Juni 2025 erstellt werden müssen
+                        barrierefrei sein</span>
+                </li>
+            </ul>
+            </div>
+
+            <aside class="notes" data-markdown>
+                - BFSG seit 2022 verabschiedet, gilt u.a. für Websites, Apps, elek. Tickets, Verkehrsdienst,
+                Bankdienstleistungen für Verbraucher:innen,
+                - setzt eine EU Richtlinie um
+                - max 50k Strafe
+            </aside>
+        </section>
+
+        <section data-background-image="images/papier-begraben.jpg" data-autoslide="0">
+            <div style="background-color: rgb(255 249 199 / 0.5); margin-top: 3em;">
+                <h3 class="grey">Zahlen / Daten / Fakten</h3>
+
+                <table style="font-size: 0.75em">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Deutschland</th>
+                            <th>Europa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Blind/Sehbeh.</th>
+                            <td data-autoslide="750" class="fragment">ca 1,2 Mio</td>
+                            <td data-autoslide="0" class="fragment">ca 30 Mio</td>
+                        </tr>
+                        <tr>
+                            <th>Kontrastschwächen</th>
+                            <td data-autoslide="750" class="fragment">ca 8 Mio</td>
+                            <td data-autoslide="0" class="fragment">ca 40 Mio</td>
+                        </tr>
+                        <tr>
+                            <th>benötigen tech.<br/>Unterstützung</th>
+                            <td data-autoslide="750" class="fragment">ca 9% = 8 Mio</td>
+                            <td data-autoslide="0" class="fragment">ca 15% = 80 Mio</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="fragment ta-left pad-left-xl" style="font-size: 0.75em">
+                    sehr grobe Schätzung:<br/>
+                    ca. jeder 10. braucht Hilfe beim Bedienen einer Website
+                </p>
+            </div>
+
+            <aside class="notes" data-markdown>
+                - Um wen dreht sich das Thema zentral?
+                - Wer braucht das? Wann? Nicht immer! Alter? Krankheit?
+                - DE Sehbehinderter **Stat. BuAmt** / Farbkontr. **Ophthalmol. Gesell.**
+                - EU: **Europ. Blinden Union** / Zahlen für assist. Tech aus dem Jahr 2017 / EU Zahlen von der EU-Comission
+            </aside>
+
+        </section>
+
+        <section class="cpr-bg bg-creative">
+            <h3 class="grey">Folgen</h3>
+        </section>
+
+        <section data-background-image="images/blindenstock.jpg" class="pad-md mrg-left-sm">
+
+            <div class="bg-lightgreen" style="background-color: rgb(218 237 230 / 0.75);">
+                <h4 class="red">Was bedeutet Barrierefrei?</h4>
+
+                <ul class="">
+                    <li class="fragment">Wahrnehmbar</li>
+                    <li class="fragment">Bedienbar</li>
+                    <li class="fragment">Verständlich</li>
+                    <li class="fragment">Robust</li>
+                </ul>
+
+                <p class="fragment">Die Website muss WCAG 2.1 konform sein!</p>
+            </div>
+
+            <aside class="notes" data-markdown>
+                - Wahrnehmbar: die präsentierten Informationen muss wahrnehmbar sein
+                - Texte müssen verständlich sein
+                - Bedienbar: mit Tastatur und ggf. per Sprachbefehl
+                - Bilder: Charts, Captchas?
+                - Videos! Gehörlose?
+                - Animationen sollen keine Anfälle auslösen (Blitzen, Flackern, ...)
+                - WCAG 2 konform
+            </aside>
+        </section>
+
+        <section class="bg-lightgreen pad-md mrg-left-sm" >
+            <h4>WCAG 2 / AA</h4>
+            <div class="flex-row" style="font-size:0.75em">
+                <ul class="fragment highlight-red">
+                    <li>semantisches&nbsp;HTML</li>
+                    <li>Tastaturnavigation.</li>
+                    <li>Aria-Attribute</li>
+                    <li>Screenreader-Tests</li>
+                </ul>
+
+                <ul>
+                    <li>kontrastreiche Farben</li>
+                    <li>Blinken / Flackern ... vermeiden</li>
+                    <li>Alternativtext für Bilder</li>
+                    <li>Transkriptionen für Videos, Charts&nbsp;...</li>
+                </ul>
+
+            </div>
+
+            <aside class="notes" data-markdown>
+                - Struktur der Webseite & Bedeutung klar zu kommunizieren!
+                - um den Inhalt erkennbar zu halten
+                - Sehbehinderte haben Zugriff auf vis. Inhalte
+                - Navigier-/Bedienbarkeit
+                - Bedienung der Webseite ermöglichen/erleichtern
+            </aside>
+
+        </section>
+
+    </section>
+
+
+    <section>
+      </section>
+
+      <section>
+        <section class="bg-lightblue orange" data-markdown>
+
+        </section>
+
+        <section>
+          <h2>Lorem Ipsum</h2>
+          <p>... dolor sit amet</p>
+          <ul>
+            <li class="">eingeblendet 1</li>
+            <li class="fragment">später eingeblendet 2</li>
+            <li class="fragment">später eingeblendet 3</li>
+          </ul>
+        </section>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="./js/reveal.js"></script>
+  <!-- used plugins -->
+  <script src="../plugin/notes/notes.js"></script>
+  <script src="../plugin/markdown/markdown.js"></script>
+  <script src="../plugin/highlight/highlight.js"></script>
+
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      showSlideNumber: 'all',// 'speaker',
+      hash: true,
+      // loop: true,
+      plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+    });
+  </script>
+
+</body>
+
+</html>
