@@ -8,221 +8,500 @@
 
   <!-- cofinpro styling -->
   <link rel="stylesheet" href="./css/cofinpro.css" id="theme">
-  <!-- code highlighting -->
-  <link rel="stylesheet" href="../plugin/highlight/monokai.css">
+  <!-- color schema / code highlighting -->
+  <link rel="stylesheet" href="../plugin/highlight/google-code.css">
 
   <link rel="shortcut icon" type="image/png" href="./favicon-32x32.png">
   <style>
     .initially-trans {
         color: transparent;
     }
+
+    li > .fragment {
+        font-size: 0.9em;
+    }
+
+    .reveal section {
+        font-size: 0.8em;
+    }
+    .reveal section p {
+        font-size: 0.666em;
+    }
+
+    .reveal pre.inline-code {
+        display:inline-block;
+        width:fit-content;
+    }
+
+    .smaller-text {
+        font-size: 0.6666em;
+    }
+
+    .reveal section .aleft {
+        text-align: left;
+        padding: 0 2ch;
+    }
+    .reveal section .aright {
+        text-align: right;
+        padding: 0 2ch;
+    }
   </style>
 </head>
 
 <body>
 
-  <div class="reveal">
+<div class="reveal">
     <div class="slides">
 
-      <section class="bg-lightblue brown" id="presentation-title">
+        <section class="bg-lightblue brown" id="presentation-title">
         <br/>
         <hgroup>
             <h1>A11Y FTW!</h1>
             <p>
                 <strong>Alle</strong> wollen barrierefreie Webapplikationen.<br/>
-                <span class="fragment highlight-current-red initially-trans" data->Und besonders in der Entwicklung!</span>
+                <span class="fragment highlight-current-red initially-trans">Und besonders in der Entwicklung!</span>
             </p>
         </hgroup>
-      </section>
+        </section>
 
-      <section id="deckgroup-why">
-
-        <section class="bg-lightgreen">
-            <h2>Barrierefreiheit</h2>
+        <section class="bg-lightblue-tr75 pad-md" id="presentation-toc" data-background-image="images/long-list-abstract.png" data-background-size="contain">
+            <h2>ToC A11Y</h2>
 
             <ul>
-                <li>Warum ... <span class="fragment red">Muss ich? Soll ich?</span></li>
-                <li>Wie ... <span class="fragment red">gehe ich das als Entwickler:in an?</span></li>
-                <li>Wann ... <span class="fragment red">im Projekt sollten wir das angehen?</span></li>
-                <li>Motivation ... <span class="fragment red">Will <b>ich</b> das? Was bringt <b>mir</b> das?</span></li>
-            </ul>
-
-            <aside class="notes" data-markdown>
-                - Warum? Rechtlich, Benutzer:innen, Moralisch! Bäh.
-                - Wie mache ich das überhaupt? (Screenreader ...)
-                - Wann?
-                - Wieso &rarr; jemand, der keine Einschränkungen hat!
-            </aside>
-
-
-        </section>
-
-        <section class="cpr-bg bg-balance">
-          <hgroup>
-            <h2 class="blue">Zum Warum?</h2>
-            <p class="blue">Mögliche Begründungen für Barrierefreiheit</p>
-          </hgroup>
-        </section>
-
-        <section class="cpr-bg bg-baloon">
-            <h3 class="red">Recht und Gesetz</h3>
-        </section>
-
-        <section data-background-image="images/gesetze-bg.jpg" data-background-size="33%" data-background-position="top left">
-            <div style="background-color: rgb(205 220 243 / 0.75); margin-top: 3em;">
-            <h3>Deutschland &amp; Europa</h3>
-
-            <ul>
-                <li>
-                    Behindertengleichstellungsgesetz (BGG)<br/>
-                    <span class="fragment">gilt seit 2002 für öff. Websites des Bundes</span>
-                    <br/>
+                <li class="nav-entry">
+                    <a class="brown" href="#warum">Warum</a>
+                     ... <span data-autoslide="2000" class="fragment red">Muss ich? Soll ich?</span>
                 </li>
-                <li>
-                    Barrierefreiheitsstärkungsgesetz (BFSG)<br/>
-                    <span class="fragment">Produkte und Dienstleistungen, die nach dem 28. Juni 2025 erstellt werden müssen
-                        barrierefrei sein</span>
+                <li class="nav-entry">
+                    <a class="brown" href="#wer">Wer</a> ...
+                    <span class="fragment red"> im Projekt sollte das angehen?</span>
+                </li>
+                <li class="nav-entry">
+                    <a class="brown" href="#wie">Wie</a> ...
+                    <span class="fragment red">gehe ich das als Entwickler:in an?</span>
+                </li>
+                <li class="nav-entry">
+                    <a class="brown" href="#dev-motivation">Motivation</a> ...
+                    <span data-autoslide="0" class="fragment red">Will <b>ich</b> das? Was bringt <b>mir</b> das?</span>
                 </li>
             </ul>
-            </div>
-
-            <aside class="notes" data-markdown>
-                - BFSG seit 2022 verabschiedet, gilt u.a. für Websites, Apps, elek. Tickets, Verkehrsdienst,
-                Bankdienstleistungen für Verbraucher:innen,
-                - setzt eine EU Richtlinie um
-                - max 50k Strafe
-            </aside>
-        </section>
-
-        <section data-background-image="images/papier-begraben.jpg" data-autoslide="0">
-            <div style="background-color: rgb(255 249 199 / 0.5); margin-top: 3em;">
-                <h3 class="grey">Zahlen / Daten / Fakten</h3>
-
-                <table style="font-size: 0.75em">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Deutschland</th>
-                            <th>Europa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>Blind/Sehbeh.</th>
-                            <td data-autoslide="750" class="fragment">ca 1,2 Mio</td>
-                            <td data-autoslide="0" class="fragment">ca 30 Mio</td>
-                        </tr>
-                        <tr>
-                            <th>Kontrastschwächen</th>
-                            <td data-autoslide="750" class="fragment">ca 8 Mio</td>
-                            <td data-autoslide="0" class="fragment">ca 40 Mio</td>
-                        </tr>
-                        <tr>
-                            <th>benötigen tech.<br/>Unterstützung</th>
-                            <td data-autoslide="750" class="fragment">ca 9% = 8 Mio</td>
-                            <td data-autoslide="0" class="fragment">ca 15% = 80 Mio</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <p class="fragment ta-left pad-left-xl" style="font-size: 0.75em">
-                    sehr grobe Schätzung:<br/>
-                    ca. jeder 10. braucht Hilfe beim Bedienen einer Website
-                </p>
-            </div>
-
-            <aside class="notes" data-markdown>
-                - Um wen dreht sich das Thema zentral?
-                - Wer braucht das? Wann? Nicht immer! Alter? Krankheit?
-                - DE Sehbehinderter **Stat. BuAmt** / Farbkontr. **Ophthalmol. Gesell.**
-                - EU: **Europ. Blinden Union** / Zahlen für assist. Tech aus dem Jahr 2017 / EU Zahlen von der EU-Comission
-            </aside>
 
         </section>
 
-        <section class="cpr-bg bg-creative">
-            <h3 class="grey">Folgen</h3>
-        </section>
+        <section id="deckgroup-warum">
 
-        <section data-background-image="images/blindenstock.jpg" class="pad-md mrg-left-sm">
+            <section id="warum" class="cpr-bg bg-balance">
+                <hgroup class="bg-lightyellow-tr50 pad-xl">
+                    <h2 class="brown">Zum Warum?</h2>
+                    <p class="brown">Mögliche Begründungen für Barrierefreiheit</p>
+                </hgroup>
 
-            <div class="bg-lightgreen" style="background-color: rgb(218 237 230 / 0.75);">
-                <h4 class="red">Was bedeutet Barrierefrei?</h4>
+                <aside class="notes" data-markdown>
+                    - Warum? Rechtlich, Benutzer:innen, Moralisch!
+                    - Wer?
+                    - Wie mache ich das überhaupt? (Screenreader ...)
+                    - Wieso &rarr; jemand, der keine Einschränkungen hat!
+                </aside>
+            </section>
 
-                <ul class="">
-                    <li class="fragment">Wahrnehmbar</li>
-                    <li class="fragment">Bedienbar</li>
-                    <li class="fragment">Verständlich</li>
-                    <li class="fragment">Robust</li>
-                </ul>
+            <section data-background-image="images/gesetze-bg.jpg" data-background-size="33%" data-background-position="top left">
+                <h3 class="red">Warum 1: Recht &amp; Gesetz</h3>
+            </section>
 
-                <p class="fragment">Die Website muss WCAG 2.1 konform sein!</p>
-            </div>
-
-            <aside class="notes" data-markdown>
-                - Wahrnehmbar: die präsentierten Informationen muss wahrnehmbar sein
-                - Texte müssen verständlich sein
-                - Bedienbar: mit Tastatur und ggf. per Sprachbefehl
-                - Bilder: Charts, Captchas?
-                - Videos! Gehörlose?
-                - Animationen sollen keine Anfälle auslösen (Blitzen, Flackern, ...)
-                - WCAG 2 konform
-            </aside>
-        </section>
-
-        <section class="bg-lightgreen pad-md mrg-left-sm" >
-            <h4>WCAG 2 / AA</h4>
-            <div class="flex-row" style="font-size:0.75em">
-                <ul class="fragment highlight-red">
-                    <li>semantisches&nbsp;HTML</li>
-                    <li>Tastaturnavigation.</li>
-                    <li>Aria-Attribute</li>
-                    <li>Screenreader-Tests</li>
-                </ul>
+            <section class="bg-lightgreen pad-md">
+                <h3>Deutschland &amp; Europa</h3>
 
                 <ul>
-                    <li>kontrastreiche Farben</li>
-                    <li>Blinken / Flackern ... vermeiden</li>
-                    <li>Alternativtext für Bilder</li>
-                    <li>Transkriptionen für Videos, Charts&nbsp;...</li>
+                    <li>
+                        Behindertengleichstellungsgesetz (BGG)
+                        <a class="smaller-text" target="_blank" href="https://www.bmas.de/DE/Service/Gesetze-und-Gesetzesvorhaben/gesetz-zur-gleichstellung-behinderter-menschen.html">Link</a><br/>
+                        <span class="fragment">gilt seit 2002 für öff. Websites des Bundes</span>
+                        <br/>
+                    </li>
+                    <li>
+                        Barrierefreiheitsstärkungsgesetz (BFSG)
+                        <a class="smaller-text" target="_blank" href="https://www.bmas.de/DE/Service/Gesetze-und-Gesetzesvorhaben/barrierefreiheitsstaerkungsgesetz.html">Link</a><br/>
+                        <span class="fragment">Produkte und Dienstleistungen, die nach dem 28. Juni 2025 erstellt werden müssen
+                            barrierefrei sein</span>
+                    </li>
                 </ul>
 
-            </div>
+                <aside class="notes" data-markdown>
+                    - BFSG seit 2022 verabschiedet, gilt u.a. für Websites, Apps, elek. Tickets, Verkehrsdienst,
+                    Bankdienstleistungen für Verbraucher:innen,
+                    - max 50k Strafe
+                    - setzt eine [Richtlinie (EU) 2019/882](https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=CELEX:32019L0882&qid=1684707407526)
+                </aside>
+            </section>
 
-            <aside class="notes" data-markdown>
-                - Struktur der Webseite & Bedeutung klar zu kommunizieren!
-                - um den Inhalt erkennbar zu halten
-                - Sehbehinderte haben Zugriff auf vis. Inhalte
-                - Navigier-/Bedienbarkeit
-                - Bedienung der Webseite ermöglichen/erleichtern
-            </aside>
+            <section>
+                <h3 class="red">Warum 2: Statistik</h3>
+            </section>
 
+            <section data-background-image="images/papier-begraben.jpg" data-autoslide="0">
+                <div style="background-color: rgb(255 249 199 / 0.5); margin-top: 3em;">
+                    <h3 class="grey">Zahlen / Daten / Fakten</h3>
+
+                    <table style="font-size: 0.75em">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Deutschland</th>
+                                <th>Europa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Blind/Sehbeh.</th>
+                                <td data-autoslide="750" class="fragment">ca 1,2 Mio</td>
+                                <td data-autoslide="0" class="fragment">ca 30 Mio</td>
+                            </tr>
+                            <tr>
+                                <th>Kontrastschwächen</th>
+                                <td data-autoslide="750" class="fragment">ca 8 Mio</td>
+                                <td data-autoslide="0" class="fragment">ca 40 Mio</td>
+                            </tr>
+                            <tr>
+                                <th>benötigen tech.<br/>Unterstützung</th>
+                                <td data-autoslide="750" class="fragment">ca 9% = 8 Mio</td>
+                                <td data-autoslide="0" class="fragment">ca 15% = 80 Mio</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p class="fragment ta-left pad-left-xl" style="font-size: 0.75em">
+                        sehr grobe Schätzung:<br/>
+                        ca. jeder 10. braucht Hilfe beim Bedienen einer Website
+                    </p>
+                </div>
+
+                <aside class="notes" data-markdown>
+                    - Um wen dreht sich das Thema zentral?
+                    - Wer braucht das? Wann? Nicht immer! Alter? Krankheit?
+                    - DE Sehbehinderter **Stat. BuAmt** / Farbkontr. **Ophthalmol. Gesell.**
+                    - EU: **Europ. Blinden Union** / Zahlen für assist. Tech aus dem Jahr 2017 / EU Zahlen von der EU-Comission
+                </aside>
+
+            </section>
         </section>
 
-    </section>
+        <section id="deckgroup-wer">
+            <section id="wer" class="cpr-bg bg-creative" data-autoslide="500">
+                <div class="bg-lightblue-tr50 pad-lg">
+                    <h2 class="brown">Zum Wer</h2>
+                    <p class="fragment brown" data-autoslide="500">
+                        <span class="fragment">
+                            Wer muss sich daum kümmern?<br />
+                            <span data-autoslide="0" class="fragment highlight-red">Na alle!!</span>
+                        </span>
+                    </p>
+                </div>
 
+                <aside class="notes" data-markdown>
+                    - im Projekt taucht die Frage auf wie A11Y?
+                    - Security wäre auch kein Thema nur für die Entwickler!
+                </aside>
+            </section>
 
-    <section>
-      </section>
+            <section class="bg-blue-tr75 pad-md" data-background-image="images/everybody-cofinpro.png">
+                <h3>Warum ein querschnittliches Thema?</h3>
 
-      <section>
-        <section class="bg-lightblue orange" data-markdown>
+                <ul data-autoslide="500">
+                    <li>Wir brauchen es in der Organisations-/ Konzeptionsphase<br />
+                        <span class="fragment" data-autoslide="0">Für die Aufstellung im Projekt, Planung, Texte, ...</span>
+                    </li>
+                    <li class="fragment" data-autoslide="750">
+                        Wir brauchen es in der Designphase<br />
+                        <span class="fragment" data-autoslide="0">Für Kontraste, Focusstates, ...</span>
+                    </li>
+                    <li class="fragment" data-autoslide="750">
+                        Wir brauchen es in der Umsetzungsphase<br />
+                        <span class="fragment" data-autoslide="0">Um das HTML zu erstellen, ...</span>
+                    </li>
+                    <li class="fragment" data-autoslide="750">
+                        Wir brauchen es im (end2end) Testphase<br />
+                        <span class="fragment" data-autoslide="0">Um zu prüfen, ob wir alles richtig gemacht haben</span>
+                    </li>
+                </ul>
 
+                <aside class="notes" data-markdown>
+                    - unterschiedl. Einschränk. &rArr; unterschiedl. Bedürfnisse
+                    - Texte
+                    - Kontrast
+                    - Bewegungseinschränk. ...
+                    - Epilepsie
+                    - end2end schwierig zu automatisieren
+                </aside>
+
+            </section>
         </section>
 
-        <section>
-          <h2>Lorem Ipsum</h2>
-          <p>... dolor sit amet</p>
-          <ul>
-            <li class="">eingeblendet 1</li>
-            <li class="fragment">später eingeblendet 2</li>
-            <li class="fragment">später eingeblendet 3</li>
-          </ul>
+        <section id="deckgroup-wie">
+            <section id="wie" class="cpr-bg bg-creative">
+                <hgroup style="background-color:rgb(205 220 243 / 0.75)">
+                    <h3>Zum Wie?</h3>
+                    <p>Was muss ich beachten? Woran muss ich mich halten?</p>
+                </hgroup>
+            </section>
+
+            <section data-background-image="images/blindenstock.jpg" class="pad-md mrg-left-sm">
+
+                <div class="bg-lightyellow-tr50 pad-md">
+                    <h4 class="red">Was bedeutet Barrierefrei?</h4>
+
+                    <ul class="">
+                        <li class="fragment">Wahrnehmbar</li>
+                        <li class="fragment">Bedienbar</li>
+                        <li class="fragment">Verständlich</li>
+                        <li class="fragment" data-autoslide="500">Robust</li>
+                    </ul>
+
+                    <p class="fragment" data-autoslide="0">Die Website muss WCAG 2.1 konform sein!</p>
+                </div>
+
+                <aside class="notes" data-markdown>
+                    - Wahrnehmbar: die präsentierten Informationen muss wahrnehmbar sein
+                      - Captchas, Bilder, Charts? Videos! Animationen (Blitzen, Flackern, ...)
+                    - Bedienbar: mit Tastatur und ggf. per Sprachbefehl
+                    - Verständlich: Texte Wahrnehmungssschwierigk.
+                    - Robust: zB bis 200% Vergröß.
+                    -----
+                    - WCAG: Web Content Accessibility Guidelines => 2.1 Standard ISO/IEC 40500:2012
+                    - WAI: Web Accessibility Initiative
+                    - Aria: Accessible Rich Internet Appl.
+                </aside>
+            </section>
+
+            <section class="bg-lightyellow pad-md mrg-left-sm" data-background-image="images/w3c-logo.png" data-background-position="2rem 2rem" data-background-size="20%">
+                <h4>
+                    WCAG 2 / AA
+                    <a href="https://www.w3.org/WAI/WCAG21/quickref/?showtechniques=121%2C131&currentsidebar=%23col_customize&levels=aaa&technologies=js%2Cserver%2Csmil%2Cpdf%2Cflash%2Csl#top" class="smaller-text">Link</a>
+                </h4>
+
+                <div class="flex-row" style="font-size:0.75em">
+                    <ul>
+                        <li class="fragment highlight-red">semantisches&nbsp;HTML</li>
+                        <li class="fragment highlight-red">Tastaturnavigation</li>
+                        <li class="fragment highlight-red">Aria-Attribute</li>
+                        <li class="fragment highlight-red">Screenreader-Tests</li>
+                        <li class="fragment highlight-red">Struktur d. Überschriften</li>
+                    </ul>
+
+                    <ul>
+                        <li class="fragment highlight-blue">kontrastreiche Farben</li>
+                        <li class="fragment highlight-blue">Blinken / Flackern ... vermeiden</li>
+                        <li class="fragment highlight-blue">Alternativtext für Bilder</li>
+                        <li class="fragment highlight-blue">Transkriptionen für Videos, Charts&nbsp;...</li>
+                    </ul>
+                </div>
+
+                <p class="smaller-text aleft">Links:
+                    <a href="https://pauljadam.com/resources.html">A11Y allg.</a>,
+                    <a href="https://www.w3.org/WAI/ARIA/apg/patterns/">Aria Beispiele und Best Practices</a>,
+                    <a href="https://www.freecodecamp.org/news/semantic-html5-elements/">Freecodecamp: Semantic HTML</a>,
+                    <a href="https://websitesetup.org/web-accessibility-checklist/">A11Y Checkliste</a>
+                </p>
+
+                <aside class="notes" data-markdown>
+                    - Struktur der Webseite & Bedeutung klar zu kommunizieren!
+                    - um den Inhalt erkennbar zu halten
+                    - Sehbehinderte haben Zugriff auf vis. Inhalte
+                    - Navigier-/Bedienbarkeit
+                    - Bedienung der Webseite ermöglichen/erleichtern
+                    - Umgang: https://www.w3.org/WAI/ARIA/apg/patterns/
+                    - WCAG 2. AA
+                </aside>
+
+            </section>
+
+            <section class="bg-lightyellow pad-md" data-background-image="images/html5-logo.png" data-background-size="40%" data-background-position="2rem 2rem">
+                <h3>Semantisches HTML?</h3>
+                <p class="fragment">
+                    Was ist semantisches HTML?<br/>
+                    <span class="fragment"> Wir haben mehr Tags als</span>
+                </p>
+                <pre class="fragment inline-code"><code data-trim><script type="text/template"><div>a</div></script></code></pre>
+                <pre class="fragment inline-code"><code data-trim><script type="text/template"><span>b</span></script></code></pre>
+                <pre class="fragment inline-code"><code data-trim><script type="text/template"><button>c</button></script></code></pre>
+                <pre class="fragment inline-code"><code data-trim><script type="text/template"><input /></script></code></pre>
+            </section>
+
+            <section class="bg-lightyellow pad-md">
+                <h4>Semantische Tags</h4>
+                <p>
+                    <pre class="inline-code"><code data-trim>header, nav, main, article, section, aside, footer, table, h1 ... h6</code></pre>
+                </p>
+                <p class="fragment aleft">
+                    Diese Tags geben den Screenreadern und Navigationshilfen Hinweise, wie sie damit umzugehen haben.<br/>
+                    Lasst uns das mal anschauen
+                </p>
+                <p class="fragment aleft">
+                    Beispiel 1 <a href="examples/01-nosemantics.html" target="_blank">Seite ohne semantisches HTML</a>
+                    <br/>
+                    Beispiel 2 <a href="">Seite in semantischem HTML</a>
+                </p>
+
+                <aside class="notes" data-markdown>
+                    - semantic `HTML TAG`s tragen Bedeutung!
+                    - Funktionsblöcke sind korrekt definiert
+                    - (Überschriften-)Struktur wird eingehalten
+                    - Tabellen stellen tabellarische Daten dar
+                    - Absätze enthalten FLießtext
+                    - Überschriften, `nav`, `aside`, ...
+                    - HTML als Ganzes sehen!!
+                </aside>
+            </section>
+
+            <section>
+                <h3>Beispiel für eine Navigation</h3>
+
+                <pre><code class="language-html" data-trim data-line-numbers="1|3|2-5|1-6"><script type="text/template">
+                <div class="nav">
+                    <div class="nav-e" onclick="navTo('Home')">Home</a></div>
+                    <div class="nav-e nav-active" onclick="navTo('Producte')" >Produkte</a></div>
+                    <div class="nav-e" onclick="navTo('Über uns')">Über uns</a></div>
+                    <div class="nav-e" onclick="navTo('Impressum')">Impressum</a></div>
+                </div>
+                </script></code></pre>
+
+                <pre><code class="language-html" data-trim data-line-numbers="0|1|4|1-8"><script type="text/template">
+                <nav aria-label="Unsere Seiten" aria-level="1">
+                    <ul>
+                        <li class="nav-e"><a href="#home">Home</a></li>
+                        <li aria-current="page" class="nav-e"><a href="#products">Produkte</a></li>
+                        <li class="nav-e"><a href="#aboutus">Über uns</a></li>
+                        <li class="nav-e"><a href="#imprint">Impressum</a></li>
+                    </ul>
+                </nav>
+                </script></code></pre>
+            </section>
+
+            <section>
+                <h3>Beispiel für Tabs - schlecht</h3>
+                <pre><code class="language-html" data-trim data-line-numbers="3|6-10"><script type="text/template">
+                <div class="tabs">
+                    <div class="tab-headers">
+                        <div id="th-1" data-content="panel1">Tab 1</div>
+                        <div id="th-2" data-content="panel2">Tab 2</div>
+                    </div>
+
+                    <div id="panel1">
+                        <h2>Tab 1 Content</h2>
+                        <p>This is the content for Tab 1.</p>
+                    </div>
+
+                    <div id="panel2">
+                        <h2>Tab 2 Content</h2>
+                        <p>This is the content for Tab 2.</p>
+                    </div>
+                </div>
+                </script></code></pre>
+
+                <p>Link zum <a target="_blank" href="./examples/03-tabs-bad.html">schlechteren Tab Beispiel</a></p>
+            </section>
+
+
+            <section>
+                <h3>Beispiel für Tabs - besser</h3>
+                <pre><code class="language-html" data-trim data-line-numbers="3|6-10"><script type="text/template">
+                <div class="tabs">
+                  <div class="tab-headers">
+                    <a id="tab1" role="tab" aria-selected="true" aria-controls="panel1" href="#panel1">Tab 1</a>
+                    <a id="tab2" role="tab" aria-selected="false" aria-controls="panel2"  href="#panel2">Tab 2</a>
+                  </div>
+
+                    <div id="panel1" role="tabpanel" aria-labelledby="tab1" aria-live>
+                        <h2>Tab 1 Content</h2>
+                        <p>This is the content for Tab 1.</p>
+                    </div>
+
+                    <div id="panel2" class="tabcontent" role="tabpanel" aria-labelledby="tab2" hidden>
+                        <h2>Tab 2 Content</h2>
+                        <p>This is the content for Tab 2.</p>
+                    </div>
+                </div>
+                </script></code></pre>
+
+                <p>Link zum <a target="_blank" href="./examples/04-tabs-good.html#panel3">besseren Tab Beispiel</a></p>
+            </section>
         </section>
-      </section>
+
+
+
+
+        <section class="deckgroup-motivation">
+            <section class="cpr-bg bg-balance" data-background-image="images/shrug.png" data-background-position="bottom left" data-background-size="50%">
+                <div >
+                    <h2>Warum also sollte ich?</h2>
+                    <p class="fragment" data-autoslide="1000">Ich habe doch keine Behinderung!</p>
+                    <span class="fragment" data-autoslide="0"></span>
+                </div>
+            </section>
+
+            <section data-background-image="images/fullstack-horse.jpeg" data-background-size="50%"
+                data-background-position="top right">
+                <div class="pad-xl" style="background-color: rgb(157 196 178 / 0.75)">
+                    <h3 class="">Frontend Development!</h3>
+
+                    <ul>
+                        <li class="fragment fade-up" data-autoslide="10000">HTML - kann doch jeder!</li>
+                        <li class="fragment fade-up" data-autoslide="5000">CSS - das kriegt <i
+                                style="text-decoration: line-through;">Stackoverflow</i> ChatGPT für mich schon hin</li>
+                        <li class="fragment fade-up" data-autoslide="0">Frontend? JS/TS? Clean Code geht da sowieso nicht!</li>
+                    </ul>
+                </div>
+
+                <aside class="notes" data-markdown>
+                    - wir schätzen HTML als Markup Sprache zu wenig!
+                    - wir schreiben schlechtes HTML!
+                    - wir schreiben schlechten Frontend-Code
+                    - schlechter Frontend Code ist schwerer barrierefrei zu machen
+                </aside>
+            </section>
+
+            <section class="bg-lightblue-tr75 pad-xl" data-autoslide="0" data-background-image="images/devs-communication.jpg" data-background-size="contain">
+                <h3 class="red">Für wen ist unser Code?</h3>
+
+                <ul>
+                    <li class="fragment" data-autoslide="5000">Für Entwickler:innen!</li>
+                    <li class="fragment" data-autoslide="0"><strong>Wir</strong> kommunizieren <strong>miteinander</strong> mit Code!</li>
+                    <li class="fragment" data-autoslide="0">Semantisches HTML kommuniziert mehr/besser!</li>
+                    <li class="fragment" data-autoslide="0">Wir müssen unseren HTML-Code ernst nehmen!</li>
+                </ul>
+
+                <aside class="notes" data-markdown>
+                    - die Maschine braucht den Code nicht, wir brauchen ihn!
+                    - Clean Code gilt auch im Frontend!
+                    - semantisches HTML ist besser zu verstehen!!
+                </aside>
+
+            </section>
+
+            <section class="bg-blue-tr75 pad-lg" data-background-image="images/semantics.png" data-background-size="33%" data-background-position="top right">
+                <h3 class="lightpink">Semantisches HTML</h3>
+
+                <ul>
+                    <li class="fragment">... macht unseren Code besser les- und verstehbar</li>
+                    <li class="fragment">... kommuniziert unsere Absicht besser</li>
+                    <li class="fragment" data-autoslide="750">...
+                         macht unseren Code barrierefrei <span class="fragment strike" data-autoslide="750">zu 90%</span>
+                        <span class="fragment" data-autoslide="0">naja zu 80%</span>
+                    </li>
+                    <li class="fragment" data-autoslide="1000">
+                        Und wir achten <strong class="lightpink">alle</strong> unsere Mitmenschen!
+                        <span class="fragment" data-autoslide="0">❤️</span>
+                    </li>
+                </ul>
+            </section>
+        </section>
+
+        <section id="bye" class="cpr-bg bg-baloon">
+            <h2 class="pad-xl bg-lightyellow-tr50 green">Vielen Dank</h2>
+        </section>
+
 
     </div>
-  </div>
+</div>
 
   <script src="./js/reveal.js"></script>
   <!-- used plugins -->
