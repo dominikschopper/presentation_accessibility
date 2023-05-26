@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Produktseite - kein semantisches HTML</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        function fakeGoTo(wohin) { alert(`Du navigierst nach: ${wohin}`); return false; }
+    </script>
+</head>
+
+<body>
+    <div class="root">
+        <div class="header">
+            <div class="page-title">
+                <img src="images/logo.png" class="logo" />
+                <div class="claim">Unsere Produkte</div>
+            </div>
+
+
+            <div class="navigation">
+                <div class="nav-entry"><a onclick="return fakeGoTo('Home')" href="#home">Home</a></div>
+                <div class="nav-entry nav-active"><a onclick="return fakeGoTo('Producte')" href="#products" >Produkte</a></div>
+                <div class="nav-entry"><a onclick="return fakeGoTo('Über uns')" href="#aboutus">Über uns</a></div>
+                <div class="nav-entry"><a onclick="return fakeGoTo('Impressum')" href="#imprint">Impressum</a></div>
+            </div>
+        </div>
+
+        <div class="content">
+            <h1>Produktliste</h1>
+
+            <ul class="products">
+                <li class="product-card highlighted-product" onclick="return fakeGoTo('Zum neuesten Produkt')">
+                    <img class="product-image" src="images/product-1.jpg" />
+                    <div>
+                        <div class="product-claim">Unser neuester Renner!</div>
+                        <div class="product-name">Pfannkuchen!! Wowsa!</div>
+                        <div class="product-text">
+                            Lecker, fluffig, frisch und süß. Am Besten mit Kastaniensirup oder
+                            auch Schokocreme. Ein Stapel davon ganz frisch auf den Teller! Hergestellt mit unseren
+                            frischen Eiern!
+                        </div>
+                    </div>
+                    <div class="jump-to-product">&rarr;</div>
+                </li>
+                <li class="product-card" onclick="return fakeGoTo('zum Besten von Gestern')">
+                    <img class="product-image" src="images/product-2.jpg" />
+                    <div>
+                        <div class="product-claim">Frisch gelegt - schmecken frisch und lecker!</div>
+                        <div class="product-name">Gekochte Eier!!</div>
+                        <div class="product-text">
+                            Eier mit den schönsten Dottern, die Sie sich vorstellen können. Unsere Hühner leben und
+                            legen glücklich in kleinen Gruppen im Freien und erhalten nur frisches natürliches Futter.
+                            Natürlich Bio!
+                        </div>
+                    </div>
+                    <div class="jump-to-product">&rarr;</div>
+                </li>
+                <li class="product-card" onclick="return fakeGoTo('zum alten Mist')">
+                    <img class="product-image" src="images/product-3.jpg" />
+                    <div>
+                        <div class="product-claim">Und unser tollster Longseller!</div>
+                        <div class="product-name">Mega-Walnüsse!</div>
+                        <div class="product-text">
+                            Unsere eigenen Walnussbäume und die schönsten Nüsse für Sie gesammelt und getrocknet.
+                            Bald auch als Walnussöl! Folgen Sie uns auf Zwitscher, um zu erfahren, wenn neue
+                            Produkte für Sie lecker und ökologisch verfügbar sind!
+                        </div>
+                    </div>
+                    <div class="jump-to-product">&rarr;</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="side-panel">
+            <div class="social-media">
+                <div class="product-header">Social Media Links</div>
+
+                <ul class="socialmedia">
+                    <li onclick="return fakeGoTo('Fratzenfibel')">zu unserer Fratzenfibel</a></li>
+                    <li onclick="return fakeGoTo('Zwitscher')">folgt uns auf Zwitscher</li>
+                    <li onclick="return fakeGoTo('Sofortgram')">mehr Bilder auf Sofortgram</li>
+                </ul>
+            </div>
+            <hr/>
+            <div>
+                <div class="product-header">Newsletter</div>
+                <div>Abbonieren Sie unseren Newsletter</div>
+                <input type="email" name="newsletter" id="newsletter">
+                <div onclick="return fakeGoTo('Newsletter abbonieren')" class="btn">Abbonnieren</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <a href="#imprint">Impressum</a>
+        </div>
+    </div>
+</body>
+
+</html>

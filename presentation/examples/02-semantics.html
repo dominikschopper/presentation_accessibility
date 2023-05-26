@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Produktseite - semantisches HTML</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        function fakeGoTo(txt) {
+            alert(`Du navigierst nach: ${txt}`);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="root">
+        <header class="header" role="banner">
+            <hgroup class="page-title">
+                <img aria-hidden="true" src="images/logo.png" class="logo" />
+                <h1 class="claim">Unsere Produkte</h1>
+            </hgroup>
+
+
+            <nav aria-label="Unsere Seiten">
+                <ul class="navigation">
+                    <li class="nav-entry"><a href="#home">Home</a></li>
+                    <li aria-current="page" class="nav-entry"><a href="#products">Produkte</a></li>
+                    <li class="nav-entry"><a href="#aboutus">Über uns</a></li>
+                    <li class="nav-entry"><a href="#imprint">Impressum</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="content">
+            <h2>Produktliste</h2>
+
+            <ul class="products">
+                <li class="product-card highlighted-product">
+                    <img
+                        alt="ein Stapel frisch gebackener Pfannkuchen"
+                        class="product-image"
+                        src="images/product-1.jpg"
+                    />
+                    <div>
+                        <div class="product-claim">Unser neuester Renner!</div>
+                        <div class="product-name">Pfannkuchen!! Wowsa!</div>
+                        <div class="product-text">
+                            Lecker, fluffig, frisch und süß. Am Besten mit Kastaniensirup oder
+                            auch Schokocreme. Ein Stapel davon ganz frisch auf den Teller! Hergestellt mit unseren
+                            frischen Eiern!
+                        </div>
+                    </div>
+                    <a href="#pancakes" class="jump-to-product">&rarr;</a>
+                </li>
+                <li class="product-card">
+                    <img
+                        alt="ein frischgekochtes Frühstücksei"
+                        class="product-image"
+                        src="images/product-2.jpg"
+                    />
+                    <div>
+                        <div class="product-claim">Frisch gelegt - schmecken frisch und lecker!</div>
+                        <div class="product-name">Gekochte Eier!!</div>
+                        <div class="product-text">
+                            Eier mit den schönsten Dottern, die Sie sich vorstellen können. Unsere Hühner leben und
+                            legen glücklich in kleinen Gruppen im Freien und erhalten nur frisches natürliches Futter.
+                            Natürlich Bio!
+                        </div>
+                    </div>
+                    <a href="#eggs" class="jump-to-product">&rarr;</a>
+                </li>
+                <li class="product-card">
+                    <img
+                        alt="geknackte Walnüsse und Walnüsse in der Schale"
+                        class="product-image"
+                        src="images/product-3.jpg"
+                    />
+                    <div>
+                        <div class="product-claim">Und unser tollster Longseller!</div>
+                        <div class="product-name">Mega-Walnüsse!</div>
+                        <div class="product-text">
+                            Unsere eigenen Walnussbäume und die schönsten Nüsse für Sie gesammelt und getrocknet.
+                            Bald auch als Walnussöl! Folgen Sie uns auf Zwitscher, um zu erfahren, wenn neue
+                            Produkte für Sie lecker und ökologisch verfügbar sind!
+                        </div>
+                    </div>
+                    <a href="#walnuts" class="jump-to-product">&rarr;</a>
+                </li>
+            </ul>
+        </main>
+
+        <aside class="side-panel">
+            <nav class="social-media" aria-labelledby="soc-media-header">
+                <h3 id="soc-media-header">Social Media Links</h3>
+
+                <ul>
+                    <li><a href="#Fratzenfibel">zu unserer Fratzenfibel</a></li>
+                    <li><a href="#Zwitscher">folgt uns auf Zwitscher</a></li>
+                    <li><a href="#Sofortgram">mehr Bilder auf Sofortgram</a></li>
+                </ul>
+            </nav>
+            <hr/>
+            <h3 class="product-header">Newsletter</h3>
+            <form onsubmit="fakeGoTo('newsletter abo'); return false;">
+                <fieldset>
+                    <legend>Abbonieren Sie unseren Newsletter</legend>
+
+                    <input
+                        type="email"
+                        placeholder="email"
+                        name="newsletter-email"
+                        id="newsletter-email"
+                        required
+                    >
+                    <button type="submit" class="btn">Abbonnieren</button>
+                </fieldset>
+            </form>
+        </aside>
+
+        <footer class="footer">
+            <a href="#imprint">Impressum</a>
+        </footer>
+    </div>
+</body>
+
+</html>

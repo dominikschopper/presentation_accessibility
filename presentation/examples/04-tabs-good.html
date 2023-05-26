@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beispiel für Tabs</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        body {
+            background-color: silver;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        .root {
+            max-width: 80ch;
+            width: 70%;
+            margin-inline: auto;
+            margin-top: 1ch;
+            padding: 1rem 2rem;
+            background-color: white;
+        }
+    </style>
+    <style>
+        .tab-headers {
+            isolation: isolate;
+        }
+        .tab-headers > a {
+            display: inline-block;
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+            padding: 8px 2ch 0 2ch;
+            background-color: white;
+        }
+
+        .tab-headers > a[aria-selected="true"] {
+            position: relative;
+            bottom: -1px;
+        }
+
+        .tab-panel {
+            border: 1px solid black;
+            display: none;
+            min-height: 300px;
+            padding: 2ch 4ch;
+            transition: padding 4s, margin 4s, z-index 4s;
+        }
+
+        .tab-panel:target {
+            display: block;
+            margin-bottom: -2px;
+            padding-top: 9px;
+            padding-bottom: 3px;
+            z-index: 10;
+        }
+
+    </style>
+    <script>
+        /**
+         * @param {Node} element
+         * @param {string} value
+         */
+        function toggleAriaSelected(element, value) {
+            const ariaSelectedNode = element.getAttributeNode('aria-selected');
+            if (!ariaSelectedNode || ariaSelectedNode.value === value) {
+                return;
+            }
+            ariaSelectedNode.value = value;
+        }
+
+        /**
+         * @param {boolean} vis
+         * @param {HTMLElement} panel
+         */
+        function setPanelVisibilityTo(vis, panel) {
+            if (vis) {
+                panel.setAttribute('hidden', false);
+                panel.setAttribute('aria-live', 'polite');
+            } else {
+                panel.setAttribute('hidden', true);
+                panel.hasAttribute('aria-live') && panel.removeAttribute('aria-live');
+            }
+        }
+
+        function toggleSelected(clickedElement) {
+            document.querySelectorAll('a[role=tab]').forEach(el => {
+                const panel = document.querySelector(`#${el.getAttributeNode('aria-controls').value}`)
+                if (el.id !== clickedElement.id) {
+                    toggleAriaSelected(el, 'false');
+                    setPanelVisibilityTo(false, panel);
+                    return;
+                }
+                toggleAriaSelected(el, 'true');
+                setPanelVisibilityTo(true, panel);
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="root">
+        <h1 role="banner">Beispiel für A11Y Tabs</h1>
+
+        <main class="tabs">
+            <div class="tab-headers">
+                <a id="tab1" role="tab" aria-selected="false" aria-controls="panel1" onclick="toggleSelected(this)" href="#panel1">To Dos</a>
+                <a id="tab2" role="tab" aria-selected="false" aria-controls="panel2" onclick="toggleSelected(this)"  href="#panel2">Termine</a>
+                <a id="tab3" role="tab" aria-selected="true"  aria-controls="panel3" onclick="toggleSelected(this)"  href="#panel3">Dringend</a>
+            </div>
+
+            <div class="tab-panel" id="panel1" role="tabpanel" aria-labelledby="tab1" hidden>
+                <h2>To Dos</h2>
+                <p>Zuerst Dringendes erledigen! Dann Termine ausmachen!</p>
+            </div>
+
+            <div class="tab-panel" id="panel2" class="tabcontent" role="tabpanel" aria-labelledby="tab2" hidden>
+                <h2>Termin der nächsten drei Tage</h2>
+                <ul>
+                    <li>Keine Termine</li>
+                </ul>
+            </div>
+
+            <div class="tab-panel" id="panel3" class="tabcontent" role="tabpanel" aria-labelledby="tab3">
+                <h2>Dringendes</h2>
+                <ol>
+                    <li>Eilig: Haare schneiden</li>
+                    <li>Noch dringender: Duschen</li>
+                </ol>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

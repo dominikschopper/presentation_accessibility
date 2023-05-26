@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beispiel für Tabs</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <style>
+        body {
+            background-color: silver;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        .root {
+            max-width: 80ch;
+            width: 70%;
+            margin-inline: auto;
+            margin-top: 1ch;
+            padding: 1rem 2rem;
+            background-color: white;
+        }
+    </style>
+    <style>
+        .tab-headers {
+            isolation: isolate;
+        }
+        .tab-headers .tab-header {
+            display: inline-block;
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+            padding: 8px 2ch 0 2ch;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .tab-headers > .selected-tab {
+            position: relative;
+            bottom: -1px;
+        }
+
+        .tab-panel {
+            border: 1px solid black;
+            display: none;
+            min-height: 300px;
+            padding: 2ch 4ch;
+        }
+
+        .tab-panel:target {
+            display: block;
+            margin-bottom: -2px;
+            padding-top: 9px;
+            padding-bottom: 3px;
+            z-index: 10;
+        }
+
+    </style>
+    <script>
+        /**
+         * @param {HTMLElement} clickedElement
+         */
+        function selectedTab(clickedElement) {
+            const cssClassName = 'selected-tab';
+            document.querySelectorAll('.tab-header').forEach(el => {
+                el.classList.remove(cssClassName);
+                const panel = document.querySelector(`#${el.dataset.content}`);
+                panel.style.display = 'none';
+                if (el.id === clickedElement.id) {
+                    el.classList.add(cssClassName);
+                    panel.style.display = 'block';
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="root">
+        <h1>Beispiel für A11Y Tabs</h1>
+
+        <div class="tabs">
+            <div class="tab-headers">
+                <div id="tab1" class="tab-header" onclick="selectedTab(this)" data-content="panel1">To Dos</div>
+                <div id="tab2" class="tab-header" onclick="selectedTab(this)" data-content="panel2">Termine</div>
+                <div id="tab3" class="tab-header selected-tab" onclick="selectedTab(this)" data-content="panel3">Dringend</div>
+            </div>
+
+            <div class="tab-panel" id="panel1">
+                <h2>To Dos</h2>
+                <p>Zuerst Dringendes erledigen! Dann Termine ausmachen!</p>
+            </div>
+
+            <div class="tab-panel" id="panel2" class="tabcontent">
+                <h2>Termin der nächsten drei Tage</h2>
+                <ul>
+                    <li>Keine Termine</li>
+                </ul>
+            </div>
+
+            <div class="tab-panel" id="panel3" class="tabcontent" style="display:block;">
+                <h2>Dringendes</h2>
+                <ol>
+                    <li>Eilig: Haare schneiden</li>
+                    <li>Noch dringender: Duschen</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
