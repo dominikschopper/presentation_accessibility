@@ -32,6 +32,13 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
   background-color: #94bce5;
 }
 
+.reveal .slides .bg-blue-tr50 {
+    background-color: rgb(148 188 229 / 0.5);
+}
+.reveal .slides .bg-blue-tr75 {
+    background-color: rgb(148 188 229 / 0.75);
+}
+
 .reveal .slides .lightblue {
   color: #cddcf3;
 }
@@ -39,13 +46,24 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 .reveal .slides .bg-lightblue {
   background-color: #cddcf3;
 }
+.reveal .slides .bg-lightblue-tr50 {
+    background-color: rgb(205 220 243 / 0.5);
+}.reveal .slides .bg-lightblue-tr75 {
+    background-color: rgb(205 220 243 / 0.75);
+}
 
 .reveal .slides .lightyellow {
   color: #fff9c7;
 }
 
 .reveal .slides .bg-lightyellow {
-  background-color: #fff9c7;
+  background-color: rgb(255, 249, 199);
+}
+.reveal .slides .bg-lightyellow-tr50 {
+    background-color: rgb(255 249 199 / 0.5);
+}
+.reveal .slides .bg-lightyellow-tr75 {
+    background-color: rgb(255 249 199 / 0.75);
 }
 
 .reveal .slides .yellow {
