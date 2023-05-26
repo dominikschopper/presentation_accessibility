@@ -1,0 +1,192 @@
+html {
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: white;
+}
+
+.root {
+    display: grid;
+    grid-template-areas: "header header"
+                        "content aside"
+                        "footer footer";
+    grid-template-rows: 120px 1fr 200px;
+    grid-template-columns: 1fr 420px;
+
+    min-height: 100%;
+    background-color: rgb(0 0 0);
+    color: rgb(242 242 242);
+}
+
+.header {
+    grid-area: header;
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+    padding: 3%;
+
+    background-color: rgb(192 0 0 / 0.75);
+}
+
+.header h1 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+.content h1,
+.content h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+.logo {
+    height: 100%;
+    max-height: 100px;
+}
+
+.page-title,
+.navigation {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation > li {
+    margin: 0;
+    padding: 0;
+}
+
+.nav-entry a,
+.nav-entry a:hover {
+    text-decoration: none;
+}
+
+.navigation .nav-entry {
+    border: 1px solid white;
+    padding: 2% 3%;
+    width: max-content;
+    border-radius: 0.333rem;
+}
+
+.nav-entry.nav-active,
+.nav-entry:hover,
+.nav-entry[aria-current="page"] {
+    background-color: white;
+    color: black;
+}
+
+.content {
+    grid-area: content;
+    padding: 3%;
+    width: 60%;
+}
+
+.products {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 0;
+    margin: 0;
+    gap: 1rem;
+    list-style-type: none;
+}
+
+.product-card {
+    display: flex;
+    position: relative;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: rgb(255 255 255 / 0.666);
+    color: black;
+}
+
+.product-image {
+    width: 240px;
+    height: 160px;
+}
+
+.product-header {
+    font-size: 1.5rem;
+    margin: 0.25rem 0;
+    font-weight: bold;
+}
+
+.product-claim {
+    font-size: 0.666rem;
+    text-decoration: underline;
+}
+
+.product-text {
+    font-size: 0.75rem;
+    max-width: 400px;
+}
+
+.jump-to-product {
+    position: absolute;
+    right: 1rem;
+    border: 3px solid rgb(192 0 0);
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    padding: 1rem;
+    overflow: hidden;
+    line-height: 2rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: rgb(192 0 0);
+}
+
+.jump-to-product:hover {
+    text-decoration: none;
+    background-color: rgb(192 0 0);
+    color: silver;
+    border-color: rgb(192 0 0);
+}
+
+.side-panel {
+    grid-area: aside;
+    padding: 2rem 2rem;
+    background-color: rgb(192 0 0 / 0.75);
+}
+
+.socialmedia > * {
+    cursor: pointer;
+}
+
+.socialmedia {
+    padding: 2rem 1rem;
+    border-radius: 0.333rem;
+}
+
+fieldset, legend {
+    display: block;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+.btn {
+    border: 1px solid white;
+    border-radius: .5rem;
+    width: max-content;
+    padding: 0.25rem 0.5rem;
+    margin: 0.5rem 0;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.footer {
+    grid-area: footer;
+    background-color: rgb(192 0 0 / 0.75);
+    color: white;
+    padding: 3%;
+}
