@@ -1,5 +1,7 @@
 # Presentation Cofinrpo Styling in Reveal.js
 
+## Viewing online
+
 ## Starting the Presentation
 
 ```bash
