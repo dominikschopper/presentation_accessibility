@@ -1,7 +1,3 @@
-# Keyboard Navigation & Focus
-
----
-
 ## tabindex — Three Values
 
 | Value | Meaning |

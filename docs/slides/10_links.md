@@ -1,6 +1,3 @@
-
-## Links
-
 ### Standards & Reference
 - WCAG 2.1 Quickref: https://www.w3.org/WAI/WCAG21/quickref/
 - WAI-ARIA Patterns: https://www.w3.org/WAI/ARIA/apg/patterns/

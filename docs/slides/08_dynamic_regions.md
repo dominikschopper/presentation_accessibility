@@ -1,7 +1,3 @@
-# Dynamic Content & Live Regions
-
----
-
 ## aria-live — Announcements for Screen Readers
 
 **❌ Toast appears visually, but is silent for AT**

@@ -1,7 +1,3 @@
-# Contrast
-
----
-
 ## Contrast — WCAG Requirements
 
 | Content | Level AA | Level AAA |

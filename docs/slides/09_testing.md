@@ -1,7 +1,3 @@
-# Testing
-
----
-
 ## Tools
 
 | Tool | What it checks |

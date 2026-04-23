@@ -1,7 +1,3 @@
-# Semantic HTML
-
----
-
 ## HTML is harder than it looks
 
 "Everyone knows HTML" — true. Writing valid HTML is easy.

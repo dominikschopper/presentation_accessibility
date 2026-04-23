@@ -1,7 +1,3 @@
-# ARIA
-
----
-
 ## The First Rule of ARIA
 
 > "If you can use a native HTML element or attribute with the semantics and behaviour you require already built in, instead of re-purposing an element and adding an ARIA role, state or property — then do so."
