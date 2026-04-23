@@ -1,0 +1,69 @@
+// primary
+$orange: #FD6202;
+$black: #131313;
+$white: #FFFFFF;
+
+// secondary
+$blue: #5072FB;
+$purple: #8566ED;
+$green: #60D391;
+
+// tertiary
+$pink: #FD6893;
+$palepink: #F8C5E3;
+
+// greys
+$grey-black: #131313;
+$grey: #898584;
+$grey-light: #C2BCBC;
+
+// derivates
+$blue-light: #AEBAFA;
+$purple-light: #CFCAFC;
+$green-light: #ABF1C7;
+$pink-light: #FFB8CA;
+$palepink-light: #FDE1F1;
+
+$colors: (
+    "orange": $orange,
+    "black": $black,
+    "white": $white,
+    "blue": $blue,
+    "purple": $purple,
+    "green": $green,
+    "pink": $pink,
+    "palepink": $palepink,
+    "grey-black": $grey-black,
+    "grey": $grey,
+    "grey-light": $grey-light,
+    "blue-light": $blue-light,
+    "purple-light": $purple-light,
+    "green-light": $green-light,
+    "pink-light": $pink-light,
+    "palepink-light": $palepink-light,
+);
+
+$bgimages: (
+"AB": url(/assets/profiles/AB.jpg),
+"AS": url(/assets/profiles/AS.jpg),
+"BT": url(/assets/profiles/BT.jpg),
+"CS": url(/assets/profiles/CS.jpg),
+"DM": url(/assets/profiles/DM.jpg),
+"DS": url(/assets/profiles/DS.jpg),
+"HD": url(/assets/profiles/HD.jpg),
+"JB": url(/assets/profiles/JB.jpg),
+"JK": url(/assets/profiles/JK.jpg),
+"KL": url(/assets/profiles/KL.jpg),
+"MH": url(/assets/profiles/MH.jpg),
+"MK": url(/assets/profiles/MK.jpg),
+"MT": url(/assets/profiles/MT.jpg),
+"NB": url(/assets/profiles/NB.jpg),
+"PS": url(/assets/profiles/PS.jpg),
+"SD": url(/assets/profiles/SD.jpg),
+"SK": url(/assets/profiles/SK.jpg),
+"SM": url(/assets/profiles/SM.jpg),
+"SOK": url(/assets/profiles/SOK.jpg),
+"TP": url(/assets/profiles/TP.jpg),
+"VP": url(/assets/profiles/VP.jpg),
+"YW": url(/assets/profiles/YW.jpg),
+);

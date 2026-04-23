@@ -1,0 +1,25 @@
+@use 'cofinpro-variables' as v;
+
+@each $name, $color in v.$colors {
+    .c-#{$name} {
+        color: $color;
+    }
+    .reveal:has(.slides .present.bg-#{$name}) {
+        background-color: $color;
+    }
+    // .bg-#{$name}-50 {
+    //     background-color: #{$color}80;
+    // }
+    // .bg-#{$name}-25 {
+    //     background-color: #{$color}40;
+    // }
+}
+
+$heads: ("h1", "h2", "h3", "h4", "h5", "h6");
+@each $h in $heads {
+    .reveal .slides .present.trennblatt #{$h} {
+        margin-bottom: 45%;
+        margin-right: 25%;
+        outline: 2px dotted fuchsia;
+    }
+}

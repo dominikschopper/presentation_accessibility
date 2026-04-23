@@ -1,0 +1,51 @@
+/**
+ * cofinpro reveal.js theme, with headers not in capitals.
+
+ * - Keep the source similar to black.css - for easy comparison.
+ * - $mainFontSize controls code blocks, too (although under some ratio).
+ */
+
+
+// Default mixins and settings -----------------
+@use "sass:color";
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+// Include theme-specific fonts
+@import "cofinpro-fonts";
+@import "cofinpro-base";
+
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #fff;
+
+$mainColor: #131313;
+$headingColor: #131313;;
+
+$mainFontSize: 22px;
+$mainFont: Inter, Helvetica, sans-serif;
+$headingFont: 'Inter Var', Helvetica, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: uppercase;
+$headingFontWeight: 600;
+$linkColor: #8566ED;
+$linkColorHover: color.scale( $linkColor, $lightness: 15% );
+$selectionBackgroundColor: color.scale( $linkColor, $lightness: 25% );
+
+$heading1Size: 1.75em;
+$heading2Size: 1.5em;
+$heading3Size: 1.25em;
+$heading4Size: 1.125em;
+
+$overlayElementBgColor: 0, 0, 0;
+$overlayElementFgColor: 240, 240, 240;
+
+// Change text colors against dark slide backgrounds
+@include dark-bg-text-color(#fff);
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
