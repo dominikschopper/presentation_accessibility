@@ -12,6 +12,34 @@
     <link rel="stylesheet" href="./dist/theme/cofinpro.css" id="theme">
     <!-- code highlighting -->
     <link rel="stylesheet" href="./plugin/highlight/idea.css">
+    <style>
+        kbd {
+            display:inline-block;
+            border:1px solid var(--c-black);
+            background-color: #C0C0C0C0;
+            color: var(--c-black);
+            padding:.25ch .5ch;
+            border-radius: 1ch;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        #chap-contrast {
+            .high-contrast, .low-contrast {
+                display:inline-block;
+                padding:4px 0 2px 4px;
+            }
+
+            .high-contrast {
+                color: var(--c-black);
+                background-color: var(--c-purple-light);
+            }
+
+
+            .low-contrast {
+                color: var(--c-grey-light);
+                background-color: var(--c-palepink-light);
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -34,16 +62,16 @@
                 <h2 style="background-color:rgb(255 255 255 / .7);width:fit-content;text-align: center;margin-inline: auto;padding:.5ch 1ch" class="c-purple">Topics</h2>
 
                 <ul style="background-color:rgb(255 255 255 / .7); padding: 3ch;border-radius: 2ch;">
-                    <li class="c-blue">Very fast Intro? (Whay and What)</li>
-                    <li class="c-grey">Contrast?</li>
-                    <li class="c-purple">What is <code>semantic</code> HTML?</li>
-                    <li class="c-black">Who needs Landmarks and how to set them!</li>
-                    <li class="c-orange">How can we get order into <code>H1 > H2 > H3</code>?</li>
-                    <li class="c-black">Where to sing <code>aria</code>s</li>
-                    <li class="c-blue">Moving with the <kbd>keyboard</kbd></li>
-                    <li class="c-grey">How to handle dynamics</li>
-                    <li class="c-purple">Testing with (and without) tools</li>
-                    <li class="c-black">Links and further infos</li>
+                    <li class="c-blue"><a href="#chap-intro">Very fast Intro? (Whay and What)</a></li>
+                    <li class="c-grey"><a href="#chap-contrast">Contrast and where to find it?</a></li>
+                    <li class="c-purple"><a href="#chap-semantic">What is <code>semantic</code> HTML?</a></li>
+                    <li class="c-black"><a href="#chap-landmarks">Landmarks and how to set them!</a></li>
+                    <li class="c-orange"><a href="#chap-headings">Get our headings in order <code>H1 > H2 > H3</code>?</a></li>
+                    <li class="c-black"><a href="#chap-aria"><code>aria</code>s not only for singing</a></li>
+                    <li class="c-blue"><a href="#chap-keyboard">Moving with the <kbd>keyboard</kbd></a></li>
+                    <li class="c-grey"><a href="#chap-dynamics">How to handle dynamic content</a></li>
+                    <li class="c-purple"><a href="#chap-testing">Testing with (and without) tools</a></li>
+                    <li class="c-black"><a href="#chap-links">Links and infos</a></li>
                 </ul>
             </section>
 
@@ -56,7 +84,8 @@
 
             <section id="chap-contrast" class="trennblatt trennblatt-green-light use-img use-img-BT">
                 <h2>
-                    How to work at <span class="c-palepink bg-purple" style="padding:2px 0 2px 4px">CONT</span><span class="c-grey-light bg-palepink-light" style="padding:2px 4px 2px 0">RAST</span>
+                    <span class="high-contrast">Con</span><span class="low-contrast" >trast</span>
+                    and where to find it?
                 </h2>
             </section>
             <section>
@@ -65,7 +94,7 @@
 
             <section id="chap-semantic" class="trennblatt trennblatt-blue-light use-img use-img-DS">
                 <h2>
-                    Semantic HTML
+                    What is <code>semantic</code> HTML?
                 </h2>
             </section>
             <section>
@@ -74,7 +103,7 @@
 
             <section id="chap-landmarks" class="trennblatt trennblatt-blue-light use-img use-img-KL">
                 <h2>
-                    Landmarks
+                    Landmarks and how to set them!
                 </h2>
             </section>
             <section>
@@ -83,7 +112,7 @@
 
             <section id="chap-headings" class="trennblatt trennblatt-blue-light use-img use-img-PS">
                 <h2>
-                    Headings
+                    Get our headings in order <code>H1 > H2 > H3</code>?
                 </h2>
             </section>
             <section>
@@ -92,7 +121,7 @@
 
             <section id="chap-aria" class="trennblatt trennblatt-blue-light use-img use-img-MT">
                 <h2>
-                    Aria
+                    <code>aria</code>s not only for singing
                 </h2>
             </section>
             <section>
@@ -101,7 +130,7 @@
 
             <section id="chap-keyboard" class="trennblatt trennblatt-blue-light use-img use-img-SM">
                 <h2>
-                    Keyboard Navigation
+                    Moving with the <kbd>keyboard</kbd>
                 </h2>
             </section>
             <section>
@@ -110,7 +139,7 @@
 
             <section id="chap-dynamics" class="trennblatt trennblatt-blue-light use-img use-img-DS">
                 <h2>
-                    Dynamic content and Regions
+                    How to handle dynamic content
                 </h2>
             </section>
             <section>
@@ -119,7 +148,7 @@
 
             <section id="chap-testing" class="trennblatt trennblatt-blue-light use-img use-img-YW">
                 <h2>
-                    A11Y Testing
+                    Testing with (and without) tools
                 </h2>
             </section>
             <section>
@@ -128,9 +157,9 @@
 
 
 
-            <section id="chap-testing" class="trennblatt trennblatt-blue-light use-img use-img-VP">
+            <section id="chap-links" class="trennblatt trennblatt-blue-light use-img use-img-VP">
                 <h2>
-                    Links / Further Reading
+                    Links and infos
                 </h2>
             </section>
             <section>

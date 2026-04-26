@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>05 — ARIA Labels</title>
+  <link rel="stylesheet" href="layout.css" />
+  <style>
+    .icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border: 1.5px solid #aaa;
+      border-radius: 6px;
+      background: #fff;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+    .icon-btn:focus-visible {
+      outline: 3px solid #2563eb;
+      outline-offset: 3px;
+    }
+    .btn-row { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; margin-bottom: 0.5rem; }
+    .demo-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="page-header">
+  <h1>05 — ARIA Labels</h1>
+  <p class="subtitle">Tab to each button and listen to what the screen reader announces.</p>
+  <a href="index.html">← Back to overview</a>
+</header>
+
+<main id="main-content">
+
+  <!-- ===== ICON BUTTONS ===== -->
+  <section aria-labelledby="icon-btn-title">
+    <h2 id="icon-btn-title">Icon buttons</h2>
+
+    <div class="compare">
+      <div>
+        <span class="label-bad">Bad — no label</span>
+        <div class="demo-card mt-1">
+          <p style="font-size:0.85rem; color:#555; margin-bottom:0.75rem;">Tab to these buttons. The screen reader announces only "button" — no idea what they do.</p>
+          <div class="btn-row">
+            <button class="icon-btn" title="">&#128190;</button>
+            <button class="icon-btn" title="">&#128465;</button>
+            <button class="icon-btn" title="">&#9998;</button>
+          </div>
+          <pre><code>&lt;button&gt;&#128190;&lt;/button&gt;
+&lt;button&gt;&#128465;&lt;/button&gt;
+&lt;button&gt;&#9998;&lt;/button&gt;</code></pre>
+        </div>
+      </div>
+
+      <div>
+        <span class="label-good">Good — aria-label</span>
+        <div class="demo-card mt-1">
+          <p style="font-size:0.85rem; color:#555; margin-bottom:0.75rem;">Tab to these buttons. The screen reader announces the action clearly.</p>
+          <div class="btn-row">
+            <button class="icon-btn" aria-label="Save document">
+              <span aria-hidden="true">&#128190;</span>
+            </button>
+            <button class="icon-btn" aria-label="Delete item">
+              <span aria-hidden="true">&#128465;</span>
+            </button>
+            <button class="icon-btn" aria-label="Edit entry">
+              <span aria-hidden="true">&#9998;</span>
+            </button>
+          </div>
+          <pre><code>&lt;button aria-label="Save document"&gt;
+  &lt;span aria-hidden="true"&gt;&#128190;&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ARIA-LABELLEDBY ===== -->
+  <section aria-labelledby="labelledby-title">
+    <h2 id="labelledby-title">aria-labelledby — referencing visible text</h2>
+    <p>When a visible heading already describes a region, reference it instead of duplicating the text in an aria-label.</p>
+
+    <div class="demo-card mt-2">
+      <section aria-labelledby="settings-heading">
+        <h3 id="settings-heading">Account settings</h3>
+        <p style="font-size:0.85rem;">This <code>&lt;section&gt;</code> is labelled by its visible heading via <code>aria-labelledby="settings-heading"</code>. In the accessibility tree this region is announced as <em>"Account settings, region"</em>.</p>
+        <button class="mt-1">Save changes</button>
+      </section>
+
+      <pre style="margin-top:1rem;"><code>&lt;section aria-labelledby="settings-heading"&gt;
+  &lt;h3 id="settings-heading"&gt;Account settings&lt;/h3&gt;
+  &lt;p&gt;…&lt;/p&gt;
+  &lt;button&gt;Save changes&lt;/button&gt;
+&lt;/section&gt;</code></pre>
+    </div>
+  </section>
+
+  <!-- ===== ARIA-DESCRIBEDBY ===== -->
+  <section aria-labelledby="describedby-title">
+    <h2 id="describedby-title">aria-describedby — supplementary description</h2>
+    <p>A label names the element. A description adds context. Both are read by the screen reader when the element receives focus — first the label, then the description.</p>
+
+    <div class="compare mt-2">
+      <div>
+        <span class="label-bad">Bad — no description</span>
+        <div class="demo-card mt-1">
+          <div class="field-group">
+            <label for="pw-bad">Password</label>
+            <input id="pw-bad" type="password" />
+          </div>
+          <p style="font-size:0.83rem; color:#555;">The hint exists visually, but is not associated with the input.</p>
+          <p class="hint">At least 8 characters, 1 number, 1 special character</p>
+          <pre><code>&lt;label for="pw"&gt;Password&lt;/label&gt;
+&lt;input id="pw" type="password" /&gt;
+&lt;p&gt;At least 8 characters…&lt;/p&gt;</code></pre>
+        </div>
+      </div>
+
+      <div>
+        <span class="label-good">Good — aria-describedby</span>
+        <div class="demo-card mt-1">
+          <div class="field-group">
+            <label for="pw-good">Password</label>
+            <input id="pw-good" type="password" aria-describedby="pw-hint" />
+            <p id="pw-hint" class="hint">At least 8 characters, 1 number, 1 special character</p>
+          </div>
+          <p style="font-size:0.83rem; color:#555;">Screen reader on focus: <em>"Password, edit text. At least 8 characters, 1 number, 1 special character."</em></p>
+          <pre><code>&lt;label for="pw"&gt;Password&lt;/label&gt;
+&lt;input id="pw" type="password"
+  aria-describedby="pw-hint" /&gt;
+&lt;p id="pw-hint"&gt;At least 8…&lt;/p&gt;</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>

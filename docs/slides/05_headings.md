@@ -25,7 +25,10 @@ Firefox Accessibility Panel → "Check for issues" flags hierarchy errors direct
 `<ArticleCard>` uses `<h2>` internally — but depending on where it is embedded,
 it should be `<h3>` or `<h4>`.
 
-**Solution: pass the heading level down via `provide`/`inject`**
+**Solution: pass the heading level down via `prop` or `provide`/`inject`**
+
+Dont style based on Tags only based on classes (reset.css!).
+
 
 ```ts
 // headingLevel.ts — shared symbol

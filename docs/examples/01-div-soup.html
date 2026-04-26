@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>01 — Div Soup vs. Semantic HTML</title>
+  <link rel="stylesheet" href="layout.css" />
+  <style>
+    /* Styles that make the div-soup LOOK like it has structure — visually only */
+    .fake-nav  { display: flex; gap: 1rem; background: #eee; padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 1rem; }
+    .fake-link { color: #2563eb; cursor: pointer; text-decoration: underline; font-size: 0.9rem; }
+    .fake-h1   { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .fake-h2   { font-size: 1.1rem; font-weight: 600; margin: 1rem 0 0.4rem; }
+    .fake-btn  { display: inline-block; padding: 0.45rem 1rem; background: #1a1a1a;
+                 color: #fff; border-radius: 6px; cursor: pointer; font-size: 0.9rem; }
+    .fake-footer { border-top: 1px solid #ddd; margin-top: 1.5rem; padding-top: 0.75rem;
+                   font-size: 0.8rem; color: #666; }
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="page-header">
+  <h1>01 — Div Soup vs. Semantic HTML</h1>
+  <p class="subtitle">Tab through each column and listen with a screen reader — the left column is nearly silent.</p>
+  <a href="index.html">← Back to overview</a>
+</header>
+
+<main id="main-content">
+
+  <div class="info">
+    <strong>How to use this page:</strong> Open your browser's Accessibility Panel (Firefox: Tools → Browser Tools → Accessibility / Chrome: DevTools → Accessibility tab). Tab through the interactive elements in each column and compare what the screen reader announces.
+  </div>
+
+  <div class="compare" style="align-items: start;">
+
+    <!-- ===== BAD COLUMN ===== -->
+    <div>
+      <span class="label-bad">Bad — div soup</span>
+
+      <!-- No landmarks, no semantics — everything is a div -->
+      <div>
+        <div class="fake-nav">
+          <div class="fake-link" tabindex="0">Home</div>
+          <div class="fake-link" tabindex="0">About</div>
+          <div class="fake-link" tabindex="0">Contact</div>
+        </div>
+
+        <div style="padding: 0.5rem 0;">
+          <div class="fake-h1">Welcome to our app</div>
+
+          <div class="fake-h2">Latest news</div>
+          <div>Here is some news content that looks like a paragraph but is just a div.</div>
+
+          <div class="fake-h2">Featured article</div>
+          <div>Another block of text. No semantic meaning whatsoever.</div>
+          <div class="fake-btn" tabindex="0" onclick="alert('clicked')">Read more</div>
+        </div>
+
+        <div class="fake-footer">
+          <div>© 2025 Example Corp</div>
+          <div class="fake-link" tabindex="0">Imprint</div>
+        </div>
+      </div>
+
+      <pre style="margin-top:1rem"><code>&lt;div class="nav"&gt;
+  &lt;div tabindex="0"&gt;Home&lt;/div&gt;
+  &lt;div tabindex="0"&gt;About&lt;/div&gt;
+&lt;/div&gt;
+&lt;div&gt;
+  &lt;div class="fake-h1"&gt;Welcome&lt;/div&gt;
+  &lt;div class="fake-h2"&gt;News&lt;/div&gt;
+  &lt;div&gt;Content…&lt;/div&gt;
+  &lt;div tabindex="0"&gt;Read more&lt;/div&gt;
+&lt;/div&gt;
+&lt;div&gt;© 2025&lt;/div&gt;</code></pre>
+
+      <p class="mt-2" style="font-size:0.85rem; color:#555;">
+        Screen reader: <em>"Home, group. About, group. Welcome to our app, group. Latest news, group…"</em>
+        — no roles, no structure, no landmarks to jump to.
+      </p>
+    </div>
+
+    <!-- ===== GOOD COLUMN ===== -->
+    <div>
+      <span class="label-good">Good — semantic HTML</span>
+
+      <div style="border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
+        <nav aria-label="Main navigation" style="background: #eee; padding: 0.75rem 1rem;">
+          <ul style="display:flex; gap:1rem; list-style:none; padding:0; margin:0;">
+            <li><a href="#" style="color:#2563eb; font-size:0.9rem;">Home</a></li>
+            <li><a href="#" style="color:#2563eb; font-size:0.9rem;">About</a></li>
+            <li><a href="#" style="color:#2563eb; font-size:0.9rem;">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div style="padding: 0.75rem 1rem;">
+          <h2>Welcome to our app</h2>
+
+          <h3>Latest news</h3>
+          <p>Here is some news content in a proper paragraph element.</p>
+
+          <h3>Featured article</h3>
+          <p>Another paragraph. Proper semantic structure throughout.</p>
+          <a href="#" class="btn" style="text-decoration:none; margin-top:0.25rem;">Read more <span class="sr-only">about the featured article</span></a>
+        </div>
+
+        <footer style="border-top: 1px solid #ddd; padding: 0.75rem 1rem; font-size: 0.8rem; color: #666;">
+          <p>© 2025 Example Corp · <a href="#">Imprint</a></p>
+        </footer>
+      </div>
+
+      <pre style="margin-top:1rem"><code>&lt;nav aria-label="Main navigation"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;main&gt;
+  &lt;h2&gt;Welcome&lt;/h2&gt;
+  &lt;h3&gt;News&lt;/h3&gt;
+  &lt;p&gt;Content…&lt;/p&gt;
+  &lt;a href="#"&gt;Read more&lt;/a&gt;
+&lt;/main&gt;
+&lt;footer&gt;© 2025&lt;/footer&gt;</code></pre>
+
+      <p class="mt-2" style="font-size:0.85rem; color:#555;">
+        Screen reader: <em>"Navigation, Main navigation. Home, link. About, link… Main region. Welcome to our app, heading level 2. Latest news, heading level 3…"</em>
+      </p>
+    </div>
+
+  </div>
+
+</main>
+
+</body>
+</html>

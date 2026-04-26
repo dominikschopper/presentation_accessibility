@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A11Y Examples — Overview</title>
+  <link rel="stylesheet" href="layout.css" />
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="page-header">
+  <h1>A11Y FTW — Accessibility Examples</h1>
+  <p class="subtitle">Companion examples for the Vue.js accessibility talk</p>
+</header>
+
+<main id="main-content">
+  <p>Each example can be explored with your keyboard, browser DevTools, or a screen reader. Open any page and use <code>Tab</code> to navigate, or activate VoiceOver / NVDA to hear how the content is announced.</p>
+
+  <nav aria-label="Examples">
+    <div class="example-grid">
+
+      <a class="example-card" href="01-div-soup.html">
+        <p class="num">01</p>
+        <h2>Div soup vs. Semantic HTML</h2>
+        <p>Compare a page built with divs against one with proper HTML elements.</p>
+      </a>
+
+      <a class="example-card" href="02-landmarks.html">
+        <p class="num">02</p>
+        <h2>Landmark Regions</h2>
+        <p>A page with correct landmark structure. Inspect with Firefox or the Landmarks extension.</p>
+      </a>
+
+      <a class="example-card" href="03-headings-bad.html">
+        <p class="num">03</p>
+        <h2>Heading Hierarchy — Bad</h2>
+        <p>Skipped levels, visual styling misused as structure.</p>
+      </a>
+
+      <a class="example-card" href="04-headings-good.html">
+        <p class="num">04</p>
+        <h2>Heading Hierarchy — Good</h2>
+        <p>Correct nesting — readable as a table of contents by a screen reader.</p>
+      </a>
+
+      <a class="example-card" href="05-aria-labels.html">
+        <p class="num">05</p>
+        <h2>ARIA Labels</h2>
+        <p>Icon buttons, aria-labelledby, aria-describedby — with and without correct labelling.</p>
+      </a>
+
+      <a class="example-card" href="06-aria-hidden.html">
+        <p class="num">06</p>
+        <h2>aria-hidden & sr-only</h2>
+        <p>Decorative icons, star ratings — what to hide and how.</p>
+      </a>
+
+      <a class="example-card" href="07-focus-styles.html">
+        <p class="num">07</p>
+        <h2>Focus Styles</h2>
+        <p>outline:none vs. :focus-visible — Tab through and compare.</p>
+      </a>
+
+      <a class="example-card" href="08-live-region.html">
+        <p class="num">08</p>
+        <h2>Live Regions</h2>
+        <p>aria-live toast notification and aria-atomic upload progress counter.</p>
+      </a>
+
+      <a class="example-card" href="09-form-errors.html">
+        <p class="num">09</p>
+        <h2>Form Errors</h2>
+        <p>aria-invalid, role="alert", focus management after a failed submit.</p>
+      </a>
+
+      <a class="example-card" href="10-dialog.html">
+        <p class="num">10</p>
+        <h2>Modal Dialog</h2>
+        <p>Native &lt;dialog&gt; with showModal(), inert background, and correct focus handling.</p>
+      </a>
+
+    </div>
+  </nav>
+</main>
+
+</body>
+</html>

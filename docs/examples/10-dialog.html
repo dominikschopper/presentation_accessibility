@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>10 — Modal Dialog</title>
+  <link rel="stylesheet" href="layout.css" />
+  <style>
+    /* Dialog styles */
+    dialog {
+      border: none;
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 420px;
+      width: 90%;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      background: #fff;
+    }
+    dialog::backdrop {
+      background: rgba(0, 0, 0, 0.5);
+    }
+    dialog h2 {
+      margin-bottom: 0.75rem;
+    }
+    dialog p {
+      color: #444;
+      font-size: 0.92rem;
+      margin-bottom: 1.25rem;
+    }
+    .dialog-actions {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: flex-end;
+    }
+    .dialog-actions button { margin: 0; }
+
+    /* Demo layout */
+    .demo-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1.5rem;
+      max-width: 500px;
+    }
+    .page-content > * + * { margin-top: 0.75rem; }
+    .checklist { list-style: none; padding: 0; }
+    .checklist li {
+      font-size: 0.88rem;
+      padding: 0.25rem 0;
+    }
+    .checklist li::before {
+      content: '✓ ';
+      color: #1a6b3a;
+      font-weight: 700;
+    }
+    .checklist li.fail::before {
+      content: '✗ ';
+      color: #b3271b;
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="page-header">
+  <h1>10 — Modal Dialog</h1>
+  <p class="subtitle">Open each dialog and navigate with Tab and ESC. Notice the difference in focus trap and background accessibility.</p>
+  <a href="index.html">← Back to overview</a>
+</header>
+
+<main id="main-content">
+
+  <div class="info">
+    <strong>What to check:</strong> After opening — can you Tab outside the dialog? Does ESC close it? After closing — does focus return to the button that opened it? Is the background content reachable by Tab?
+  </div>
+
+  <div class="compare" style="align-items: start;">
+
+    <!-- ===== BAD DIALOG ===== -->
+    <section aria-labelledby="bad-dialog-section">
+      <h2 id="bad-dialog-section">Bad — div "modal", no native behaviour</h2>
+      <p style="font-size:0.85rem; color:#555; margin-bottom:0.75rem;">Built with a div. No focus trap, no ESC support, background remains accessible by Tab and screen reader.</p>
+
+      <div class="demo-card">
+        <div class="page-content">
+          <p>Some page content behind the modal.</p>
+          <a href="#">A link in the background</a>
+          <button id="open-bad" onclick="openBadModal()">Delete item (bad dialog)</button>
+        </div>
+
+        <!-- Fake modal — no native behaviour -->
+        <div id="bad-modal-overlay"
+          style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:50; align-items:center; justify-content:center;">
+          <div role="dialog"
+            aria-labelledby="bad-dialog-title"
+            style="background:#fff; border-radius:12px; padding:2rem; max-width:380px; width:90%;">
+            <h2 id="bad-dialog-title">Delete this item?</h2>
+            <p>This action cannot be undone.</p>
+            <div class="dialog-actions">
+              <button onclick="closeBadModal()">Cancel</button>
+              <button class="primary" onclick="closeBadModal()">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ul class="checklist mt-2">
+        <li class="fail">Focus trap — Tab escapes the dialog</li>
+        <li class="fail">ESC to close — not implemented</li>
+        <li class="fail">Background inert — background links reachable</li>
+        <li class="fail">Focus returns to trigger — not guaranteed</li>
+      </ul>
+
+      <pre style="margin-top:0.75rem;"><code>&lt;div role="dialog"
+  aria-labelledby="title"&gt;
+  &lt;!-- No native focus trap,
+       no ESC, no backdrop --&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- ===== GOOD DIALOG ===== -->
+    <section aria-labelledby="good-dialog-section">
+      <h2 id="good-dialog-section">Good — native &lt;dialog&gt; with inert</h2>
+      <p style="font-size:0.85rem; color:#555; margin-bottom:0.75rem;">Native <code>&lt;dialog&gt;</code> with <code>showModal()</code>. Focus trap and ESC are built in. Background is made inert.</p>
+
+      <div class="demo-card">
+        <div id="page-content-good" class="page-content">
+          <p>Some page content behind the modal.</p>
+          <a href="#">A link in the background</a>
+          <button id="open-good" onclick="openGoodModal()">Delete item (good dialog)</button>
+        </div>
+      </div>
+
+      <!-- Native dialog — outside the inert area -->
+      <dialog id="good-dialog" aria-labelledby="good-dialog-title" aria-describedby="good-dialog-desc">
+        <h2 id="good-dialog-title">Delete this item?</h2>
+        <p id="good-dialog-desc">This action cannot be undone. The item will be permanently removed.</p>
+        <div class="dialog-actions">
+          <button id="good-cancel" onclick="closeGoodModal()">Cancel</button>
+          <button class="primary" onclick="closeGoodModal()">Delete</button>
+        </div>
+      </dialog>
+
+      <ul class="checklist mt-2">
+        <li>Focus trap — Tab stays within the dialog</li>
+        <li>ESC to close — built into the browser</li>
+        <li>Background inert — background links unreachable</li>
+        <li>Focus returns to trigger — on close()</li>
+      </ul>
+
+      <pre style="margin-top:0.75rem;"><code>&lt;dialog
+  aria-labelledby="title"
+  aria-describedby="desc"&gt;
+  …
+&lt;/dialog&gt;
+
+// JS
+dialog.showModal()   // activates modal mode
+main.inert = true    // blocks background
+// on close:
+main.inert = false
+trigger.focus()      // return focus</code></pre>
+    </section>
+  </div>
+
+  <!-- inert explanation -->
+  <section aria-labelledby="inert-title" class="mt-3" style="max-width:680px;">
+    <h2 id="inert-title">Why inert and not aria-hidden?</h2>
+    <div class="compare">
+      <div>
+        <strong>aria-hidden="true"</strong>
+        <ul style="font-size:0.85rem; margin-top:0.4rem; padding-left:1.2rem;">
+          <li>Hides from the accessibility tree ✓</li>
+          <li>Tab focus still works through it ✗</li>
+          <li>Mouse clicks still work ✗</li>
+        </ul>
+      </div>
+      <div>
+        <strong>inert</strong>
+        <ul style="font-size:0.85rem; margin-top:0.4rem; padding-left:1.2rem;">
+          <li>Hides from the accessibility tree ✓</li>
+          <li>Blocks all Tab focus ✓</li>
+          <li>Blocks mouse clicks ✓</li>
+        </ul>
+      </div>
+    </div>
+    <p class="mt-2" style="font-size:0.85rem; color:#555;">Browser support: Chrome 102+, Firefox 112+, Safari 15.5+. If you need to support older browsers, use the <a href="https://github.com/WICG/inert" target="_blank" rel="noopener">wicg-inert polyfill</a>.</p>
+  </section>
+
+</main>
+
+<script>
+  /* ---- Bad modal ---- */
+  function openBadModal() {
+    document.getElementById('bad-modal-overlay').style.display = 'flex'
+    // No focus management, no ESC handler, no inert
+  }
+  function closeBadModal() {
+    document.getElementById('bad-modal-overlay').style.display = 'none'
+    // Focus does NOT return to the trigger
+  }
+
+  /* ---- Good modal ---- */
+  const goodDialog = document.getElementById('good-dialog')
+  const openBtn    = document.getElementById('open-good')
+  const pageContent = document.getElementById('page-content-good')
+
+  function openGoodModal() {
+    pageContent.inert = true
+    goodDialog.showModal()
+    // showModal() moves focus to the first focusable element inside the dialog
+  }
+
+  function closeGoodModal() {
+    goodDialog.close()
+    pageContent.inert = false
+    openBtn.focus()
+  }
+
+  // ESC triggers the native 'close' event — we also need to restore inert there
+  goodDialog.addEventListener('close', () => {
+    pageContent.inert = false
+    openBtn.focus()
+  })
+</script>
+
+</body>
+</html>

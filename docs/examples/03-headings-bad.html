@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>03 — Heading Hierarchy (Bad)</title>
+  <link rel="stylesheet" href="layout.css" />
+  <style>
+    /* Make the headings look visually reasonable despite broken semantics */
+    .styled-h3-looks-like-h2 { font-size: 1.3rem; font-weight: 600; margin: 1rem 0 0.4rem; }
+    .styled-h5-looks-like-h3 { font-size: 1.05rem; font-weight: 600; margin: 0.75rem 0 0.3rem; }
+
+    .heading-badge {
+      display: inline-block;
+      font-family: monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 1px 7px;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+    .badge-ok      { background: #e2f5eb; color: #1a6b3a; border: 1px solid #a3d9b8; }
+    .badge-problem { background: #fde8e4; color: #b3271b; border: 1px solid #f5b4ae; }
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="page-header">
+  <h1>03 — Heading Hierarchy (Bad)</h1>
+  <p class="subtitle">Levels are skipped and visual styling is used instead of semantics. Screen reader users get a broken table of contents.</p>
+  <a href="index.html">← Back to overview</a>
+</header>
+
+<main id="main-content">
+
+  <div class="info">
+    <strong>How to spot this:</strong> Firefox Accessibility Panel → "Check for issues" → look for heading hierarchy warnings.
+    Screen reader: use <em>H</em> to jump between headings (NVDA) or the Rotor (VoiceOver) and notice the unexpected jumps.
+  </div>
+
+  <span class="label-bad">Bad — broken heading hierarchy</span>
+
+  <div style="background:#fff; border:1px solid #ddd; border-radius:8px; padding:1.5rem; margin-top:0.75rem;">
+
+    <h1>
+      Company Blog
+      <span class="heading-badge badge-ok">h1 — correct</span>
+    </h1>
+
+    <!-- Skipped h2 — went straight to h3 -->
+    <h3 class="styled-h3-looks-like-h2">
+      Featured article
+      <span class="heading-badge badge-problem">h3 — h2 skipped!</span>
+    </h3>
+    <p>This article looks like a section heading visually, but is marked up as h3. The h2 level is completely missing.</p>
+
+    <!-- Skipped h4 — went straight to h5 -->
+    <h5 class="styled-h5-looks-like-h3">
+      Author information
+      <span class="heading-badge badge-problem">h5 — h4 skipped!</span>
+    </h5>
+    <p>Written by Jane Doe · 12 January 2025</p>
+
+    <!-- Now goes back up to h2 — out of order -->
+    <h2 style="margin-top:1.5rem;">
+      More articles
+      <span class="heading-badge badge-problem">h2 — appears after h3 and h5!</span>
+    </h2>
+    <p>A list of further reading. The heading level jumped backwards — a screen reader user navigating by heading has no way to understand the page structure.</p>
+
+    <!-- Uses a div styled to look like a heading -->
+    <div style="font-size:1.1rem; font-weight:600; margin:1rem 0 0.3rem;">
+      Newsletter signup
+      <span class="heading-badge badge-problem">div — not a heading at all</span>
+    </div>
+    <p>Visually this looks like a heading. In the accessibility tree it is just a paragraph of text with no structural role.</p>
+
+  </div>
+
+  <section aria-labelledby="what-sr-hears" class="mt-3">
+    <h2 id="what-sr-hears">What a screen reader user hears</h2>
+    <p>When navigating by heading, the outline of this page looks like this:</p>
+    <pre><code>h1  Company Blog
+  h3  Featured article          ← where is h2?
+    h5  Author information      ← where is h4?
+  h2  More articles             ← back to h2 after h5?
+  (no heading)  Newsletter      ← completely invisible</code></pre>
+    <p class="mt-1" style="font-size:0.85rem; color:#555;">Compare this to the good example in <a href="04-headings-good.html">04 — Heading Hierarchy (Good)</a>.</p>
+  </section>
+
+</main>
+
+</body>
+</html>
