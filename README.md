@@ -1,29 +1,8 @@
 # Presentation Cofinrpo Styling in Reveal.js
 
+this is a presentation on A11Y for developers with a very short intro to the topic
+and some hand picked examples - thought for a rough 1h intro and as reference for later
+
 ## Viewing online
 
-## Starting the Presentation
-
-```bash
-# 0. make sure youn are in the presentations directory
-
-# 1. optionally install http-server locally
-# npm install
-
-# 2. start the http-server to serve the presentation
-# and enjoy speakers notes and more
-npm start
-```
-
-then open in chrome-based browsers
-
-- [the presentation in the index.html](http://localhost:8808/) or
-- [the example page for all elements](http://localhost:8808/cofinpro-example.html)
-
-## How to create a COFINPRO style presentation
-
-For the basics (Slides, vertical Slides, using Markdown as Slide content, Speakers Notes...) and its supported plugins see the [official Reveal.JS Website](https://revealjs.com/)
-
-## COFINPRO style elements
-
- see the content of the [cofinpro-example.html file](./cofinpro-example.html) for the source code of our examples and watch it in parallel [in the browser](http://localhost:8808/cofinpro-example.html)
+open in chrome-based browsers [the presentation on Github Pages](https://dominikschopper.github.io/presentation_accessibility/) or
