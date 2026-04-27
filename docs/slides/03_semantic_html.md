@@ -15,6 +15,28 @@ If the HTML is wrong, ARIA attributes can do little to fix it.
 
 ---
 
+## Examples for Semantic HTML
+
+If the data has a relation between rows and columns it should be in a table
+
+```html
+<table>
+  <caption><!-- ... --></caption>
+  <thead><!-- ... --></thead>
+  <tbody><!-- ... --></tbody>
+</table>
+```
+if it is a button use
+```html
+<button><!-- ... --></button>
+```
+if this button leads somewhere use
+```html
+<a href="/some-where"><!-- ... --></a>
+```
+
+---
+
 ## The Accessibility Tree
 
 The browser builds an **Accessibility Tree** in parallel with the DOM — this is what screen readers, voice control software, and Braille displays read.

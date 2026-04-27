@@ -22,6 +22,9 @@ they jump directly to landmarks using keyboard shortcuts.
 Multiple `<nav>` elements: always distinguish them with `aria-label` —
 otherwise the user hears: _"Navigation. Navigation. Navigation."_
 
+**`section`**<!-- .element class="c-orange" --> is the **`div`**<!-- .element class="c-blue" -->
+ of landmarks. Only use it with an `aria-label` or `aria-labelledby` - otherwise it is like a `div`
+
 ---
 
 ## Landmarks — See Them Live
