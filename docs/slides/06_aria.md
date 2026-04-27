@@ -12,28 +12,28 @@
 
 ## aria-label / aria-labelledby / aria-describedby
 
-**❌ Icon button without a label — screen reader reads nothing**
+**BAD: Icon button without a label — screen reader reads nothing**<!-- .element: class="c-orange" -->
 ```html
 <button @click="closeDialog">
   <svg>…</svg>
 </button>
 ```
 
-**✅ aria-label for icon-only elements**
+**GOOD: aria-label for icon-only elements**<!-- .element: class="c-green" -->
 ```html
 <button @click="closeDialog" aria-label="Close dialog">
   <svg aria-hidden="true" focusable="false">…</svg>
 </button>
 ```
 
-**✅ aria-labelledby — reference to visible text**
+**GOOD: aria-labelledby — reference to visible text**<!-- .element: class="c-green" -->
 ```html
 <section aria-labelledby="settings-title">
   <h2 id="settings-title">Settings</h2>
 </section>
 ```
 
-**✅ aria-describedby — supplementary explanation**
+**GOOD: aria-describedby — supplementary explanation**<!-- .element: class="c-green" -->
 ```html
 <input aria-describedby="pw-hint" type="password" />
 <p id="pw-hint">At least 8 characters, 1 number</p>
@@ -43,17 +43,22 @@
 
 ## aria-hidden — What Should Actually Be Hidden
 
-**❌ Focusable content behind aria-hidden**
+**BAD: Focusable content behind aria-hidden**<!-- .element: class="c-orange" -->
 ```html
 <div aria-hidden="true">
   <button>I am "invisible" in the AT — but still reachable by Tab</button>
 </div>
 ```
 
-**✅ Hide decorative elements only**
+**GOOD: Hide decorative elements only**<!-- .element: class="c-green" -->
 ```html
 <svg aria-hidden="true" focusable="false">…</svg>
 
+---
+
+## Screen Reader Only / Visually Hidden
+
+```
 <!-- Star rating: visual vs. screen reader -->
 <span aria-hidden="true">★★★☆☆</span>
 <span class="sr-only">3 out of 5 stars</span>
