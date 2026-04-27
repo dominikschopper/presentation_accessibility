@@ -1,11 +1,11 @@
 ## aria-live — Announcements for Screen Readers
 
-**❌ Toast appears visually, but is silent for AT**
+**Toast appears visually, but is silent for AT**
 ```html
 <div class="toast" v-if="saved">Saved!</div>
 ```
 
-**✅ With aria-live — the region must already be in the DOM on load**
+**With aria-live — the region must already be in the DOM on load**
 ```html
 <!-- App.vue — always rendered, never v-if! -->
 <p
@@ -90,12 +90,12 @@ async function save() {
 
 ## Label Association
 
-**❌ Placeholder is not a label — disappears while typing**
+**Placeholder is not a label — disappears while typing**
 ```html
 <input type="email" placeholder="Email address" />
 ```
 
-**✅ Explicit association via `for`/`id`**
+**Explicit association via `for`/`id`**
 ```html
 <label for="email">Email address</label>
 <input
@@ -114,12 +114,12 @@ async function save() {
 
 ## Error Feedback — Visible AND Audible
 
-**❌ Error appears visually, AT is not informed**
+**Error appears visually, AT is not informed**
 ```html
 <p class="error" v-if="error">{{ error }}</p>
 ```
 
-**✅ role="alert" + focus on first invalid field after submit**
+**role="alert" + focus on first invalid field after submit**
 
 A reusable composable using `useTemplateRef` (Vue 3.5+):
 
@@ -252,13 +252,12 @@ function onClose() {
 
 ## `inert` vs. `aria-hidden`
 
-| | `aria-hidden="true"` | `inert` |
-|---|---|---|
-| AT access blocked | ✅ | ✅ |
-| Tab focus blocked | ❌ | ✅ |
-| Mouse click blocked | ❌ | ✅ |
-| Browser support | excellent | good (Chrome 102+, FF 112+, Safari 15.5+) |
+|                     | `aria-hidden="true"` | `inert` |
+|---------------------|----------------------|---------|
+| AT access blocked   |           ✅         |   ✅    |
+| Tab focus blocked   |           ❌         |   ✅    |
+| Mouse click blocked |           ❌         |   ✅    |
+| Browser support     |       excellent.     |  good<br/>(Chrome 102+, FF 112+, Safari 15.5+) |
 
 `inert` is the better choice for modal backgrounds — it blocks everything at once.
 `aria-hidden` alone is not enough: focusable elements in the background remain reachable by Tab.
-

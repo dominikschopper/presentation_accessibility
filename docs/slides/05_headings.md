@@ -1,13 +1,13 @@
 ## Heading Hierarchy
 
-**❌ Bad — levels skipped, visual styling instead of semantics**
+**Bad — levels skipped, visual styling instead of semantics**
 ```html
 <h1>App</h1>
 <h3>Section</h3>   <!-- h2 missing! -->
 <h5>Detail</h5>
 ```
 
-**✅ Good — strictly hierarchical**
+**Good — strictly hierarchical**
 ```html
 <h1>App</h1>
   <h2>Section</h2>

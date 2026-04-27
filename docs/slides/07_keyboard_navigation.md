@@ -6,7 +6,7 @@
 | `-1` | Programmatically focusable, not reachable via Tab |
 | `> 0` | **Never use** — destroys the natural tab order |
 
-**✅ Interactive card: action via a real interactive element**
+**Interactive card: action via a real interactive element**
 ```html
 <article class="card">
   <h3>Title</h3>
@@ -19,12 +19,12 @@
 
 ## Focus Styles — Never Simply Remove Them
 
-**❌ The classic anti-pattern**
+**The classic anti-pattern**
 ```css
 * { outline: none; }  /* millions of projects, one a11y crime */
 ```
 
-**✅ Modern solution: distinguish mouse vs. keyboard**
+**Modern solution: distinguish mouse vs. keyboard**
 ```css
 /* Mouse users: no outline */
 :focus:not(:focus-visible) {
@@ -47,7 +47,7 @@ The contrast requirement also applies to the focus ring: 3 : 1 against its surro
 SPAs do not load a new page — the browser does not know the content has changed.
 Screen readers stay silent, focus remains on the clicked link.
 
-**✅ Move focus to main content after navigation**
+**Move focus to main content after navigation**
 ```ts
 // router/index.ts
 router.afterEach((to) => {
