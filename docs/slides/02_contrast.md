@@ -30,6 +30,11 @@ Contrast belongs in the design token documentation — not in the code review.
 
 ---
 
+## contrast examples
+![color contrast visual](./assets/color_contrast_visual.jpg)
+
+---
+
 ## Contrast — When It Fails
 
 This is not a developer problem alone:
