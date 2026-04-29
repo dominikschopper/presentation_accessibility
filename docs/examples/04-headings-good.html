@@ -7,21 +7,12 @@
   <link rel="stylesheet" href="layout.css" />
   <style>
     .heading-badge {
-      display: inline-block;
-      font-family: monospace;
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 1px 7px;
-      border-radius: 4px;
-      margin-left: 0.5rem;
-      vertical-align: middle;
-      background: #e2f5eb;
-      color: #1a6b3a;
-      border: 1px solid #a3d9b8;
+      display: inline-block; font-family: monospace; font-size: 0.7rem; font-weight: 700;
+      padding: 1px 7px; border-radius: 4px; margin-left: 0.5rem; vertical-align: middle;
+      background: #e2f5eb; color: #1a6b3a; border: 1px solid #a3d9b8;
     }
-    /* Visual indent to show hierarchy — achieved with margin, not heading level -->
-    .indent-1 { margin-left: 1.25rem; }
-    .indent-2 { margin-left: 2.5rem; }
+    .indent-1 { margin-left: 1.5rem; }
+    .indent-2 { margin-left: 3rem; }
   </style>
 </head>
 <body>
@@ -30,7 +21,7 @@
 
 <header class="page-header">
   <h1>04 — Heading Hierarchy (Good)</h1>
-  <p class="subtitle">Strict nesting, visual size controlled via CSS — not by choosing a different heading element.</p>
+  <p class="subtitle">Strict nesting — visual size controlled via CSS, not by choosing a different heading element.</p>
   <a href="index.html">← Back to overview</a>
 </header>
 
@@ -38,74 +29,54 @@
 
   <div class="info">
     <strong>Try it:</strong> Use <em>H</em> (NVDA) or the Rotor (VoiceOver) to jump between headings.
-    The outline should read like a logical table of contents — no gaps, no surprises.
+    The outline reads like a logical table of contents — no gaps, no surprises.
   </div>
 
   <span class="label-good">Good — correct heading hierarchy</span>
 
   <div style="background:#fff; border:1px solid #ddd; border-radius:8px; padding:1.5rem; margin-top:0.75rem;">
 
-    <h1>
-      Company Blog
-      <span class="heading-badge">h1</span>
-    </h1>
+    <h1>Company Blog <span class="heading-badge">h1</span></h1>
 
     <div class="indent-1">
-      <h2>
-        Featured article
-        <span class="heading-badge">h2</span>
-      </h2>
-      <p>This is a proper h2, one level below the page h1. Visual size is set via CSS, not by picking a higher heading level.</p>
+      <h2>Featured article <span class="heading-badge">h2</span></h2>
+      <p>Proper h2, one level below the page h1. Visual size is set via CSS.</p>
 
       <div class="indent-2">
-        <h3>
-          Author information
-          <span class="heading-badge">h3</span>
-        </h3>
+        <h3>Author information <span class="heading-badge">h3</span></h3>
         <p>Written by Jane Doe · 12 January 2025</p>
       </div>
 
-      <h2 style="margin-top:1.5rem;">
-        More articles
-        <span class="heading-badge">h2</span>
-      </h2>
-      <p>A second h2, a sibling of "Featured article". Both are direct children of the h1. The hierarchy is clear.</p>
+      <h2 style="margin-top:1.5rem;">More articles <span class="heading-badge">h2</span></h2>
+      <p>A sibling of "Featured article" — both are direct children of the h1.</p>
 
       <div class="indent-2">
-        <h3>
-          Newsletter signup
-          <span class="heading-badge">h3</span>
-        </h3>
-        <p>This subsection now correctly appears as h3 under the h2. No levels were skipped.</p>
+        <h3>Newsletter signup <span class="heading-badge">h3</span></h3>
+        <p>Correctly appears as h3 under the h2. No levels skipped.</p>
       </div>
     </div>
 
   </div>
 
-  <section aria-labelledby="what-sr-hears" class="mt-3">
-    <h2 id="what-sr-hears">What a screen reader user hears</h2>
-    <p>When navigating by heading, the outline of this page looks like this:</p>
+  <section aria-labelledby="outline-title" class="mt-3">
+    <h2 id="outline-title">What a screen reader user sees</h2>
     <pre><code>h1  Company Blog
   h2  Featured article
     h3  Author information
   h2  More articles
     h3  Newsletter signup</code></pre>
-    <p class="mt-1" style="font-size:0.85rem; color:#555;">Every level follows naturally from the previous one. A screen reader user can understand the page structure without seeing it.</p>
+    <p class="mt-1" style="font-size:0.85rem; color:#555;">Every level follows naturally from the previous one. Compare with <a href="03-headings-bad.html">03 — Heading Hierarchy (Bad)</a>.</p>
   </section>
 
   <section aria-labelledby="size-tip" class="mt-3">
-    <h2 id="size-tip">Controlling visual size without breaking semantics</h2>
-    <pre><code>/* Use CSS to make an h2 look smaller if needed */
-.card h2 {
-  font-size: 1rem;   /* visually smaller */
-  font-weight: 600;
-}
+    <h2 id="size-tip">Visual size without breaking semantics</h2>
+    <pre><code>/* Make an h2 visually smaller if the design requires it */
+.card h2 { font-size: 1rem; font-weight: 600; }
 
-/* Never do this just to get a different font size: */
-/* &lt;h4&gt;Section title&lt;/h4&gt;  ← wrong level chosen for visual reasons */</code></pre>
+/* Never choose a heading level just for font size: */
+/* &lt;h4&gt;Section title&lt;/h4&gt;  ← wrong */</code></pre>
   </section>
 
 </main>
-
 </body>
 </html>

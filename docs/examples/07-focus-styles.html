@@ -6,62 +6,19 @@
   <title>07 — Focus Styles</title>
   <link rel="stylesheet" href="layout.css" />
   <style>
-    /* ---- Section A: No focus styles at all ---- */
-    .demo-no-focus *:focus {
-      outline: none !important;
-      box-shadow: none !important;
-    }
-    .demo-no-focus button,
-    .demo-no-focus a,
-    .demo-no-focus input {
-      border-color: #aaa !important;
-    }
+    .demo-no-focus *:focus { outline: none !important; box-shadow: none !important; }
+    .demo-focus-always *:focus { outline: 3px solid #e17055 !important; outline-offset: 3px; }
+    .demo-focus-visible *:focus:not(:focus-visible) { outline: none !important; box-shadow: none !important; }
+    .demo-focus-visible *:focus-visible { outline: 3px solid #00b894 !important; outline-offset: 3px; border-radius: 4px; }
 
-    /* ---- Section B: :focus (old approach, always visible) ---- */
-    .demo-focus-always *:focus {
-      outline: 3px solid #e17055 !important;
-      outline-offset: 3px;
-    }
-
-    /* ---- Section C: :focus-visible (modern, correct) ---- */
-    .demo-focus-visible *:focus:not(:focus-visible) {
-      outline: none !important;
-      box-shadow: none !important;
-    }
-    .demo-focus-visible *:focus-visible {
-      outline: 3px solid #00b894 !important;
-      outline-offset: 3px;
-      border-radius: 4px;
-    }
-
-    /* shared card styles */
     .demo-area {
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 1.25rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
+      background: #fff; border: 1px solid #ddd; border-radius: 8px;
+      padding: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem;
     }
     .demo-area a { color: #2563eb; }
-    .section-3col {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1rem;
-      margin-top: 0.75rem;
-    }
-    @media (max-width: 720px) {
-      .section-3col { grid-template-columns: 1fr; }
-    }
-    .col-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 0.4rem;
-      display: block;
-    }
+    .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 0.75rem; }
+    @media (max-width: 720px) { .three-col { grid-template-columns: 1fr; } }
+    .col-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.4rem; display: block; }
     .col-label-bad     { color: #b3271b; }
     .col-label-neutral { color: #6b6b00; }
     .col-label-good    { color: #1a6b3a; }
@@ -73,37 +30,34 @@
 
 <header class="page-header">
   <h1>07 — Focus Styles</h1>
-  <p class="subtitle">Tab through each column to feel the difference. Then try clicking first, then Tab — notice how :focus-visible behaves differently.</p>
+  <p class="subtitle">Tab through each column. In column C, also try clicking first with the mouse, then Tab — the outline only appears for keyboard navigation.</p>
   <a href="index.html">← Back to overview</a>
 </header>
 
 <main id="main-content">
 
   <div class="info">
-    <strong>How to test:</strong> Press <kbd>Tab</kbd> to navigate. In column C, also try <em>clicking</em> a button with the mouse first and then pressing <kbd>Tab</kbd> — the outline only appears when the keyboard is involved.
+    Press <kbd>Tab</kbd> to navigate. Column C: click a button with the mouse first, then press Tab — notice when the outline appears and when it does not.
   </div>
 
-  <div class="section-3col">
+  <div class="three-col">
 
-    <!-- ===== A: No focus ===== -->
     <div>
       <span class="col-label col-label-bad">A — outline: none (bad)</span>
-      <p style="font-size:0.82rem; color:#555; margin-bottom:0.5rem;">Focus is invisible. Keyboard users have no idea where they are on the page.</p>
+      <p style="font-size:0.82rem; color:#555; margin-bottom:0.5rem;">Focus is invisible. Keyboard users have no idea where they are.</p>
       <div class="demo-area demo-no-focus">
         <button>Save</button>
         <button>Cancel</button>
         <a href="#">Learn more</a>
         <input type="text" placeholder="Search…" aria-label="Search" style="margin-bottom:0;" />
       </div>
-      <pre style="margin-top:0.75rem; font-size:0.7rem;"><code>/* The most common mistake */
-* { outline: none; }
+      <pre style="margin-top:0.75rem; font-size:0.7rem;"><code>* { outline: none; }
 :focus { outline: none; }</code></pre>
     </div>
 
-    <!-- ===== B: :focus always ===== -->
     <div>
       <span class="col-label col-label-neutral">B — :focus always visible</span>
-      <p style="font-size:0.82rem; color:#555; margin-bottom:0.5rem;">Works for keyboard — but the orange ring also appears when clicking with a mouse, which designers often dislike.</p>
+      <p style="font-size:0.82rem; color:#555; margin-bottom:0.5rem;">Works for keyboard users — but the ring also appears on mouse click.</p>
       <div class="demo-area demo-focus-always">
         <button>Save</button>
         <button>Cancel</button>
@@ -116,10 +70,9 @@
 }</code></pre>
     </div>
 
-    <!-- ===== C: :focus-visible ===== -->
     <div>
       <span class="col-label col-label-good">C — :focus-visible (correct)</span>
-      <p style="font-size:0.82rem; color:#555; margin-bottom:0.5rem;">Visible for keyboard users. Hidden when using a mouse. Best of both worlds.</p>
+      <p style="font-size:0.82rem; color:#555; margin-bottom:0.5rem;">Visible for keyboard, hidden for mouse. Best of both worlds.</p>
       <div class="demo-area demo-focus-visible">
         <button>Save</button>
         <button>Cancel</button>
@@ -140,13 +93,9 @@
 
   <section aria-labelledby="contrast-note" class="mt-3">
     <h2 id="contrast-note">Focus ring contrast</h2>
-    <p>The focus ring itself must meet a contrast ratio of <strong>3 : 1</strong> against its surrounding colours (WCAG 2.4.11, Level AA). A light grey outline on a white background will fail. Test the ring colour with the same tools used for text contrast.</p>
-    <div class="info">
-      <strong>Tip:</strong> Use <code>outline-offset</code> to add a small gap between the element and the focus ring. This improves visibility on coloured backgrounds and avoids the ring merging with the element border.
-    </div>
+    <p>The focus ring itself must meet a contrast ratio of <strong>3 : 1</strong> against its surrounding colours (WCAG 2.4.11). A light grey ring on a white background will fail. Test the ring colour with the same tools used for text contrast.</p>
   </section>
 
 </main>
-
 </body>
 </html>

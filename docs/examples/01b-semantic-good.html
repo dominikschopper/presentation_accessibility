@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>01b — Semantic HTML (Good)</title>
+  <link rel="stylesheet" href="layout.css" />
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="page-header">
+  <h1>01b — Semantic HTML (Good)</h1>
+  <p class="subtitle">Tab through this page and listen with a screen reader — landmarks, headings, and roles are all correctly in place.</p>
+  <a href="index.html">← Back to overview</a>
+</header>
+
+<main id="main-content">
+
+  <div class="info">
+    <strong>What to notice:</strong> Open the Firefox Accessibility Panel or Chrome Accessibility tab. The tree has a clear structure — banner, navigation, main, contentinfo. A screen reader user can jump directly to any landmark using keyboard shortcuts.
+  </div>
+
+  <span class="label-good">Good — semantic HTML</span>
+
+  <!-- Self-contained demo page inside the example -->
+  <div style="border:1px solid #ddd; border-radius:8px; overflow:hidden; margin-top:0.75rem;">
+
+    <header style="background:#eee; padding:0.75rem 1rem;">
+      <nav aria-label="Main navigation">
+        <ul style="display:flex; gap:1rem; list-style:none; padding:0; margin:0;">
+          <li><a href="#" style="color:#2563eb; font-size:0.9rem;">Home</a></li>
+          <li><a href="#" style="color:#2563eb; font-size:0.9rem;">About</a></li>
+          <li><a href="#" style="color:#2563eb; font-size:0.9rem;">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div style="padding:1.25rem;">
+      <h2>Welcome to our app</h2>
+
+      <h3>Latest news</h3>
+      <p>Here is some news content in a proper paragraph element.</p>
+
+      <h3>Featured article</h3>
+      <p>Another paragraph. Proper semantic structure throughout.</p>
+      <a href="#" class="btn" style="text-decoration:none; margin-top:0.25rem; display:inline-flex;">
+        Read more
+        <span class="sr-only">about the featured article</span>
+      </a>
+    </div>
+
+    <footer style="border-top:1px solid #ddd; padding:0.75rem 1rem; font-size:0.82rem; color:#666;">
+      <p>© 2025 Example Corp · <a href="#">Imprint</a></p>
+    </footer>
+
+  </div>
+
+  <section aria-labelledby="code-title">
+    <h2 id="code-title">The markup</h2>
+    <pre><code>&lt;header&gt;
+  &lt;nav aria-label="Main navigation"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+&lt;main&gt;
+  &lt;h2&gt;Welcome to our app&lt;/h2&gt;
+  &lt;h3&gt;Latest news&lt;/h3&gt;
+  &lt;p&gt;Content…&lt;/p&gt;
+  &lt;a href="#"&gt;Read more&lt;span class="sr-only"&gt; about the featured article&lt;/span&gt;&lt;/a&gt;
+&lt;/main&gt;
+&lt;footer&gt;© 2025&lt;/footer&gt;</code></pre>
+    <p class="mt-1" style="font-size:0.85rem; color:#555;">
+      Screen reader: <em>"Navigation, Main navigation. Home, link. About, link… Main region. Welcome to our app, heading level 2. Latest news, heading level 3…"</em>
+      Compare with <a href="01a-div-soup-bad.html">01a — Div Soup (Bad)</a>.
+    </p>
+  </section>
+
+</main>
+
+</body>
+</html>

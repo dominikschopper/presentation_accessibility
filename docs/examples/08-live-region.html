@@ -6,48 +6,17 @@
   <title>08 — Live Regions</title>
   <link rel="stylesheet" href="layout.css" />
   <style>
-    .toast-container {
-      position: fixed;
-      bottom: 1.5rem;
-      right: 1.5rem;
-      z-index: 100;
-    }
     .toast {
-      background: #1a1a1a;
-      color: #fff;
-      padding: 0.75rem 1.25rem;
-      border-radius: 8px;
-      font-size: 0.88rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.25s, transform 0.25s;
-      pointer-events: none;
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 100;
+      background: #1a1a1a; color: #fff; padding: 0.75rem 1.25rem;
+      border-radius: 8px; font-size: 0.88rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      opacity: 0; transform: translateY(10px);
+      transition: opacity 0.25s, transform 0.25s; pointer-events: none;
     }
-    .toast.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .progress-bar-track {
-      height: 10px;
-      background: #e5e5e5;
-      border-radius: 20px;
-      overflow: hidden;
-      margin: 0.5rem 0;
-      max-width: 300px;
-    }
-    .progress-bar-fill {
-      height: 100%;
-      background: #2563eb;
-      border-radius: 20px;
-      transition: width 0.4s ease;
-    }
-    .demo-card {
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 1.25rem;
-    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    .progress-track { height: 10px; background: #e5e5e5; border-radius: 20px; overflow: hidden; max-width: 300px; margin: 0.5rem 0; }
+    .progress-fill  { height: 100%; background: #2563eb; border-radius: 20px; transition: width 0.4s ease; }
+    .demo-card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 1.25rem; }
   </style>
 </head>
 <body>
@@ -62,86 +31,72 @@
 
 <main id="main-content">
 
-  <!-- ===== TOAST ===== -->
+  <!-- Global good live region — always in DOM -->
+  <p id="live-polite" role="status" aria-live="polite" aria-atomic="true" class="sr-only"></p>
+
   <section aria-labelledby="toast-title">
     <h2 id="toast-title">Toast notification — aria-live="polite"</h2>
-    <p>A toast appears visually and is simultaneously announced by the screen reader — without moving keyboard focus.</p>
-
     <div class="compare mt-2">
-
       <div>
         <span class="label-bad">Bad — visual only, AT is silent</span>
         <div class="demo-card mt-1">
-          <p style="font-size:0.83rem; color:#555; margin-bottom:0.75rem;">The toast appears — but there is no live region. The screen reader says nothing.</p>
-          <button onclick="showBadToast()">Save (bad version)</button>
-          <div id="toast-bad" class="toast" aria-hidden="true" role="presentation">Document saved!</div>
+          <p style="font-size:0.83rem; color:#555; margin-bottom:0.75rem;">Toast appears — screen reader says nothing.</p>
+          <button onclick="showBadToast()">Save (bad)</button>
           <pre style="margin-top:0.75rem;"><code>&lt;div class="toast" v-if="saved"&gt;
   Saved!
-&lt;/div&gt;</code></pre>
+&lt;/div&gt;
+&lt;!-- no live region --&gt;</code></pre>
         </div>
       </div>
-
       <div>
-        <span class="label-good">Good — live region announces the message</span>
+        <span class="label-good">Good — live region announces message</span>
         <div class="demo-card mt-1">
-          <p style="font-size:0.83rem; color:#555; margin-bottom:0.75rem;">The toast appears <em>and</em> the screen reader announces "Document saved!" without interrupting the user.</p>
-          <button onclick="showGoodToast()">Save (good version)</button>
-          <pre style="margin-top:0.75rem;"><code>&lt;!-- Always in the DOM, never v-if --&gt;
-&lt;p
-  role="status"
-  aria-live="polite"
-  aria-atomic="true"
-  class="sr-only"
-&gt;{{ message }}&lt;/p&gt;</code></pre>
+          <p style="font-size:0.83rem; color:#555; margin-bottom:0.75rem;">Toast appears <em>and</em> screen reader announces "Document saved!" politely.</p>
+          <button onclick="showGoodToast()">Save (good)</button>
+          <pre style="margin-top:0.75rem;"><code>&lt;!-- Always in DOM, never v-if --&gt;
+&lt;p role="status"
+   aria-live="polite"
+   aria-atomic="true"
+   class="sr-only"&gt;
+  {{ message }}
+&lt;/p&gt;</code></pre>
         </div>
       </div>
     </div>
-
-    <!-- Good live region — always in the DOM -->
-    <p id="live-polite" role="status" aria-live="polite" aria-atomic="true" class="sr-only"></p>
   </section>
 
-  <!-- ===== ARIA-ATOMIC ===== -->
   <section aria-labelledby="atomic-title">
     <h2 id="atomic-title">aria-atomic — upload progress</h2>
-    <p>Compare how <code>aria-atomic="false"</code> and <code>aria-atomic="true"</code> sound when a counter updates.</p>
-
+    <p>Without <code>aria-atomic</code>, the screen reader reads only the changed text node — just the number, no context.</p>
     <div class="compare mt-2">
-
       <div>
         <span class="label-bad">atomic="false" — only the change is read</span>
         <div class="demo-card mt-1">
-          <p style="font-size:0.83rem; color:#555; margin-bottom:0.75rem;">When the number updates, the AT reads only the changed text node — just the number, no context.</p>
-          <div id="progress-atomic-false" role="status" aria-live="polite" aria-atomic="false" style="font-weight:600; margin-bottom:0.5rem;">
+          <div id="prog-false" role="status" aria-live="polite" aria-atomic="false" style="font-weight:600; margin-bottom:0.5rem;">
             <span id="count-false">0</span> of 10 files uploaded
           </div>
-          <div class="progress-bar-track">
-            <div class="progress-bar-fill" id="bar-false" style="width:0%"></div>
-          </div>
-          <button onclick="startProgress('false')" style="margin-top:0.5rem;">Start upload (atomic=false)</button>
+          <div class="progress-track"><div class="progress-fill" id="bar-false" style="width:0%"></div></div>
+          <button onclick="startProgress('false')" style="margin-top:0.5rem;">Start upload</button>
+          <p style="font-size:0.82rem; color:#555; margin-top:0.5rem;">AT reads: <em>"4"</em> … <em>"5"</em> … — no context</p>
         </div>
       </div>
-
       <div>
-        <span class="label-good">atomic="true" — full text is read</span>
+        <span class="label-good">atomic="true" — full sentence is read</span>
         <div class="demo-card mt-1">
-          <p style="font-size:0.83rem; color:#555; margin-bottom:0.75rem;">When the number updates, the AT reads the entire text — "4 of 10 files uploaded" — with full context.</p>
-          <div id="progress-atomic-true" role="status" aria-live="polite" aria-atomic="true" style="font-weight:600; margin-bottom:0.5rem;">
+          <div id="prog-true" role="status" aria-live="polite" aria-atomic="true" style="font-weight:600; margin-bottom:0.5rem;">
             <span id="count-true">0</span> of 10 files uploaded
           </div>
-          <div class="progress-bar-track">
-            <div class="progress-bar-fill" id="bar-true" style="width:0%"></div>
-          </div>
-          <button onclick="startProgress('true')" style="margin-top:0.5rem;">Start upload (atomic=true)</button>
+          <div class="progress-track"><div class="progress-fill" id="bar-true" style="width:0%"></div></div>
+          <button onclick="startProgress('true')" style="margin-top:0.5rem;">Start upload</button>
+          <p style="font-size:0.82rem; color:#555; margin-top:0.5rem;">AT reads: <em>"4 of 10 files uploaded"</em> — full context</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== ASSERTIVE ===== -->
   <section aria-labelledby="assertive-title">
     <h2 id="assertive-title">aria-live="assertive" — critical errors only</h2>
-    <p>Assertive regions interrupt the screen reader immediately. Use only for urgent errors — not for status updates or confirmations.</p>
+    <p>Assertive regions interrupt the screen reader immediately. Use only for urgent, critical errors.</p>
     <div class="demo-card mt-2" style="max-width:480px;">
       <button onclick="triggerError()" style="background:#b3271b; color:#fff; border-color:#b3271b;">Simulate session timeout</button>
       <div id="live-assertive" role="alert" aria-live="assertive" style="margin-top:0.75rem; min-height:1.5rem; font-size:0.88rem; font-weight:600; color:#b3271b;"></div>
@@ -153,61 +108,46 @@
 
 </main>
 
-<!-- Bad toast — no live region, just visual -->
-<div class="toast-container">
-  <div id="toast-bad-visual" class="toast" aria-hidden="true">Document saved!</div>
-</div>
-
-<!-- Good toast — visual counterpart to the sr-only live region -->
-<div class="toast-container" style="bottom:5rem;">
-  <div id="toast-good-visual" class="toast" aria-hidden="true">Document saved!</div>
-</div>
+<div id="toast-bad"  class="toast" aria-hidden="true">Document saved!</div>
+<div id="toast-good" class="toast" aria-hidden="true" style="bottom:5rem;">Document saved!</div>
 
 <script>
   function showBadToast() {
-    const t = document.getElementById('toast-bad-visual')
+    const t = document.getElementById('toast-bad')
     t.classList.add('show')
     setTimeout(() => t.classList.remove('show'), 2500)
-    // No live region update — AT hears nothing
   }
 
   function showGoodToast() {
-    const t = document.getElementById('toast-good-visual')
+    const t = document.getElementById('toast-good')
     t.classList.add('show')
     setTimeout(() => t.classList.remove('show'), 2500)
-
-    // Update the live region
     const lr = document.getElementById('live-polite')
     lr.textContent = ''
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => { lr.textContent = 'Document saved!' })
-    })
+    requestAnimationFrame(() => requestAnimationFrame(() => { lr.textContent = 'Document saved!' }))
     setTimeout(() => { lr.textContent = '' }, 3000)
   }
 
   function startProgress(mode) {
     let count = 0
-    const countEl = document.getElementById(`count-${mode}`)
-    const barEl   = document.getElementById(`bar-${mode}`)
-
-    const interval = setInterval(() => {
+    const countEl = document.getElementById('count-' + mode)
+    const barEl   = document.getElementById('bar-' + mode)
+    countEl.textContent = 0; barEl.style.width = '0%'
+    const iv = setInterval(() => {
       count++
       countEl.textContent = count
       barEl.style.width = (count * 10) + '%'
-      if (count >= 10) clearInterval(interval)
+      if (count >= 10) clearInterval(iv)
     }, 800)
   }
 
   function triggerError() {
     const el = document.getElementById('live-assertive')
     el.textContent = ''
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        el.textContent = 'Your session has expired. Please log in again.'
-      })
-    })
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      el.textContent = 'Your session has expired. Please log in again.'
+    }))
   }
 </script>
-
 </body>
 </html>

@@ -6,35 +6,17 @@
   <title>09 — Form Errors</title>
   <link rel="stylesheet" href="layout.css" />
   <style>
-    .form-card {
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 1.5rem;
-      max-width: 440px;
-    }
+    .form-card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 1.5rem; max-width: 440px; }
     .alert-box {
-      background: #fff8f7;
-      border: 1.5px solid #f5b4ae;
-      border-radius: 6px;
-      padding: 0.75rem 1rem;
-      font-size: 0.88rem;
-      color: #b3271b;
-      font-weight: 600;
-      margin-bottom: 1.25rem;
-      display: none;
+      background: #fff8f7; border: 1.5px solid #f5b4ae; border-radius: 6px;
+      padding: 0.75rem 1rem; font-size: 0.88rem; color: #b3271b; font-weight: 600;
+      margin-bottom: 1.25rem; display: none;
     }
     .alert-box.visible { display: block; }
     .success-box {
-      background: #f7fcf9;
-      border: 1.5px solid #a3d9b8;
-      border-radius: 6px;
-      padding: 0.75rem 1rem;
-      font-size: 0.88rem;
-      color: #1a6b3a;
-      font-weight: 600;
-      margin-bottom: 1.25rem;
-      display: none;
+      background: #f7fcf9; border: 1.5px solid #a3d9b8; border-radius: 6px;
+      padding: 0.75rem 1rem; font-size: 0.88rem; color: #1a6b3a; font-weight: 600;
+      margin-bottom: 1.25rem; display: none;
     }
     .success-box.visible { display: block; }
   </style>
@@ -45,7 +27,7 @@
 
 <header class="page-header">
   <h1>09 — Form Errors</h1>
-  <p class="subtitle">Submit the form empty and listen. Then compare the two versions with a screen reader.</p>
+  <p class="subtitle">Submit each form empty and listen to what the screen reader announces.</p>
   <a href="index.html">← Back to overview</a>
 </header>
 
@@ -53,114 +35,69 @@
 
   <div class="compare" style="align-items:start;">
 
-    <!-- ===== BAD FORM ===== -->
     <section aria-labelledby="bad-form-title">
       <h2 id="bad-form-title">Bad — errors visible, AT uninformed</h2>
-      <p style="font-size:0.85rem; color:#555; margin-bottom:0.75rem;">Errors appear visually after submit, but focus stays on the button. Screen reader users have no indication that something went wrong.</p>
-
+      <p style="font-size:0.85rem; color:#555; margin-bottom:0.75rem;">Errors appear visually but focus stays on the button. Screen reader users have no indication anything went wrong.</p>
       <div class="form-card">
         <form id="form-bad" novalidate onsubmit="submitBad(event)">
-
           <div class="field-group">
             <label for="name-bad">Full name</label>
             <input id="name-bad" type="text" autocomplete="name" />
             <p id="name-bad-err" class="error-msg" style="display:none;">Name is required.</p>
           </div>
-
           <div class="field-group">
             <label for="email-bad">Email address</label>
             <input id="email-bad" type="email" autocomplete="email" />
             <p id="email-bad-err" class="error-msg" style="display:none;">Please enter a valid email address.</p>
           </div>
-
           <button type="submit" class="primary">Create account</button>
         </form>
       </div>
-
-      <pre style="margin-top:1rem;"><code>&lt;!-- Error shown visually only --&gt;
-&lt;p class="error" v-if="error"&gt;
+      <pre style="margin-top:1rem;"><code>&lt;p class="error" v-if="error"&gt;
   Name is required.
 &lt;/p&gt;
 &lt;!-- No aria-invalid, no role="alert",
      no focus management --&gt;</code></pre>
     </section>
 
-    <!-- ===== GOOD FORM ===== -->
     <section aria-labelledby="good-form-title">
       <h2 id="good-form-title">Good — errors announced, focus moved</h2>
-      <p style="font-size:0.85rem; color:#555; margin-bottom:0.75rem;">On submit: a summary appears at the top with <code>role="alert"</code>, and focus moves to the first invalid field. Screen reader users are fully informed.</p>
-
+      <p style="font-size:0.85rem; color:#555; margin-bottom:0.75rem;">On submit: a summary appears with <code>role="alert"</code>, and focus moves to the first invalid field.</p>
       <div class="form-card">
         <form id="form-good" novalidate onsubmit="submitGood(event)">
-
-          <!-- Summary error (role=alert, always rendered) -->
-          <div
-            id="good-summary"
-            role="alert"
-            aria-live="assertive"
-            class="alert-box"
-          ></div>
-
-          <!-- Success (role=status) -->
-          <div
-            id="good-success"
-            role="status"
-            aria-live="polite"
-            class="success-box"
-          ></div>
-
+          <div id="good-summary" role="alert" aria-live="assertive" class="alert-box"></div>
+          <div id="good-success" role="status" aria-live="polite" class="success-box"></div>
           <div class="field-group">
             <label for="name-good">
               Full name
               <span aria-hidden="true"> *</span>
               <span class="sr-only">(required)</span>
             </label>
-            <input
-              id="name-good"
-              type="text"
-              autocomplete="name"
-              aria-required="true"
-              aria-describedby="name-good-err"
-            />
-            <p id="name-good-err" class="error-msg" style="display:none;" aria-live="polite">Name is required.</p>
+            <input id="name-good" type="text" autocomplete="name"
+              aria-required="true" aria-describedby="name-good-err" />
+            <p id="name-good-err" class="error-msg" style="display:none;">Name is required.</p>
           </div>
-
           <div class="field-group">
             <label for="email-good">
               Email address
               <span aria-hidden="true"> *</span>
               <span class="sr-only">(required)</span>
             </label>
-            <input
-              id="email-good"
-              type="email"
-              autocomplete="email"
-              aria-required="true"
-              aria-describedby="email-good-err"
-            />
-            <p id="email-good-err" class="error-msg" style="display:none;" aria-live="polite">Please enter a valid email address.</p>
+            <input id="email-good" type="email" autocomplete="email"
+              aria-required="true" aria-describedby="email-good-err" />
+            <p id="email-good-err" class="error-msg" style="display:none;">Please enter a valid email address.</p>
           </div>
-
           <button type="submit" class="primary">Create account</button>
         </form>
       </div>
-
-      <pre style="margin-top:1rem;"><code>&lt;!-- Summary with role="alert" --&gt;
-&lt;div role="alert" aria-live="assertive"
-     id="summary"&gt;
+      <pre style="margin-top:1rem;"><code>&lt;div role="alert" aria-live="assertive"&gt;
   {{ errorSummary }}
 &lt;/div&gt;
-
-&lt;!-- Field with aria-invalid + describedby --&gt;
 &lt;input
-  id="name"
   aria-required="true"
   aria-describedby="name-err"
   :aria-invalid="nameError ? 'true' : undefined"
-/&gt;
-&lt;p id="name-err" class="error-msg"&gt;
-  {{ nameError }}
-&lt;/p&gt;</code></pre>
+/&gt;</code></pre>
     </section>
 
   </div>
@@ -168,37 +105,18 @@
 </main>
 
 <script>
-  /* --- Bad form --- */
   function submitBad(e) {
     e.preventDefault()
     const name  = document.getElementById('name-bad')
     const email = document.getElementById('email-bad')
     const nameErr  = document.getElementById('name-bad-err')
     const emailErr = document.getElementById('email-bad-err')
-
     let hasError = false
-
-    if (!name.value.trim()) {
-      nameErr.style.display = 'block'
-      hasError = true
-    } else {
-      nameErr.style.display = 'none'
-    }
-
-    if (!email.value.trim() || !email.value.includes('@')) {
-      emailErr.style.display = 'block'
-      hasError = true
-    } else {
-      emailErr.style.display = 'none'
-    }
-
-    // No focus management, no aria-invalid, no AT announcement
-    if (!hasError) {
-      alert('Form submitted (bad version)')
-    }
+    nameErr.style.display  = name.value.trim()  ? 'none' : (hasError = true, 'block')
+    emailErr.style.display = (email.value.trim() && email.value.includes('@')) ? 'none' : (hasError = true, 'block')
+    if (!hasError) alert('Submitted (bad version)')
   }
 
-  /* --- Good form --- */
   function submitGood(e) {
     e.preventDefault()
     const nameInput  = document.getElementById('name-good')
@@ -209,48 +127,32 @@
     const success    = document.getElementById('good-success')
 
     let errors = []
+    ;[nameInput, emailInput].forEach(el => el.removeAttribute('aria-invalid'))
+    ;[nameErr, emailErr].forEach(el => el.style.display = 'none')
+    summary.textContent = ''; summary.classList.remove('visible')
+    success.textContent = ''; success.classList.remove('visible')
 
-    // Reset
-    ;[nameInput, emailInput].forEach(el => {
-      el.removeAttribute('aria-invalid')
-    })
-    ;[nameErr, emailErr].forEach(el => {
-      el.style.display = 'none'
-    })
-    summary.textContent = ''
-    summary.classList.remove('visible')
-    success.textContent = ''
-    success.classList.remove('visible')
-
-    // Validate
     if (!nameInput.value.trim()) {
       nameInput.setAttribute('aria-invalid', 'true')
       nameErr.style.display = 'block'
       errors.push('Name is required')
     }
-
-    const emailVal = emailInput.value.trim()
-    if (!emailVal || !emailVal.includes('@') || !emailVal.includes('.')) {
+    const ev = emailInput.value.trim()
+    if (!ev || !ev.includes('@') || !ev.includes('.')) {
       emailInput.setAttribute('aria-invalid', 'true')
       emailErr.style.display = 'block'
       errors.push('Please enter a valid email address')
     }
 
     if (errors.length > 0) {
-      // Show summary as role=alert — AT announces it immediately
       summary.textContent = `${errors.length} error${errors.length > 1 ? 's' : ''} found: ${errors.join('; ')}.`
       summary.classList.add('visible')
-
-      // Move focus to first invalid field
-      const firstInvalid = document.querySelector('#form-good [aria-invalid="true"]')
-      firstInvalid?.focus()
+      document.querySelector('#form-good [aria-invalid="true"]')?.focus()
     } else {
-      // Success announcement
       success.textContent = 'Account created successfully.'
       success.classList.add('visible')
     }
   }
 </script>
-
 </body>
 </html>

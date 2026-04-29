@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>01a — Div Soup (Bad)</title>
+  <link rel="stylesheet" href="layout.css" />
+  <style>
+    .fake-nav  { display: flex; gap: 1rem; background: #eee; padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 1rem; }
+    .fake-link { color: #2563eb; cursor: pointer; text-decoration: underline; font-size: 0.9rem; }
+    .fake-h1   { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .fake-h2   { font-size: 1.1rem; font-weight: 600; margin: 1rem 0 0.4rem; }
+    .fake-btn  { display: inline-block; padding: 0.45rem 1rem; background: #1a1a1a;
+                 color: #fff; border-radius: 6px; cursor: pointer; font-size: 0.9rem; }
+    .fake-footer { border-top: 1px solid #ddd; margin-top: 1.5rem; padding-top: 0.75rem;
+                   font-size: 0.8rem; color: #666; }
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="page-header">
+  <h1>01a — Div Soup (Bad)</h1>
+  <p class="subtitle">Tab through this page and listen with a screen reader — there are no landmarks, no headings, no roles. Everything is a div.</p>
+  <a href="index.html">← Back to overview</a>
+</header>
+
+<main id="main-content">
+
+  <div class="info">
+    <strong>What to notice:</strong> Open the Firefox Accessibility Panel or Chrome Accessibility tab. The tree is nearly flat — no landmarks, no heading structure. A screen reader user has no way to orient themselves on this page.
+  </div>
+
+  <span class="label-bad">Bad — no semantic HTML</span>
+
+  <div style="background:#fff; border:1px solid #ddd; border-radius:8px; padding:1.25rem; margin-top:0.75rem;">
+
+    <div class="fake-nav">
+      <div class="fake-link" tabindex="0">Home</div>
+      <div class="fake-link" tabindex="0">About</div>
+      <div class="fake-link" tabindex="0">Contact</div>
+    </div>
+
+    <div>
+      <div class="fake-h1">Welcome to our app</div>
+
+      <div class="fake-h2">Latest news</div>
+      <div>Here is some news content that looks like a paragraph but is just a div.</div>
+
+      <div class="fake-h2">Featured article</div>
+      <div>Another block of text. No semantic meaning whatsoever.</div>
+      <div class="fake-btn" tabindex="0" onclick="alert('clicked')">Read more</div>
+    </div>
+
+    <div class="fake-footer">
+      <div>© 2025 Example Corp</div>
+      <div class="fake-link" tabindex="0">Imprint</div>
+    </div>
+
+  </div>
+
+  <section aria-labelledby="code-title">
+    <h2 id="code-title">The markup</h2>
+    <pre><code>&lt;div class="nav"&gt;
+  &lt;div tabindex="0"&gt;Home&lt;/div&gt;
+  &lt;div tabindex="0"&gt;About&lt;/div&gt;
+&lt;/div&gt;
+&lt;div&gt;
+  &lt;div class="fake-h1"&gt;Welcome to our app&lt;/div&gt;
+  &lt;div class="fake-h2"&gt;Latest news&lt;/div&gt;
+  &lt;div&gt;Content…&lt;/div&gt;
+  &lt;div tabindex="0"&gt;Read more&lt;/div&gt;
+&lt;/div&gt;
+&lt;div&gt;© 2025&lt;/div&gt;</code></pre>
+    <p class="mt-1" style="font-size:0.85rem; color:#555;">
+      Screen reader: <em>"Home, group. About, group. Welcome to our app, group. Latest news, group…"</em>
+      — no roles, no structure, no landmarks to jump to.
+      Compare with <a href="01b-semantic-good.html">01b — Semantic HTML (Good)</a>.
+    </p>
+  </section>
+
+</main>
+
+</body>
+</html>

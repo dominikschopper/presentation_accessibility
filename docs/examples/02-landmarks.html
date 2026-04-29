@@ -6,38 +6,17 @@
   <title>02 — Landmark Regions</title>
   <link rel="stylesheet" href="layout.css" />
   <style>
-    /* Visual landmark labels for demonstration */
     [data-landmark] {
-      position: relative;
-      border: 2px dashed #4a7fcb;
-      border-radius: 6px;
-      margin-bottom: 1rem;
-      padding: 1rem;
+      position: relative; border: 2px dashed #4a7fcb;
+      border-radius: 6px; margin-bottom: 1rem; padding: 1rem;
     }
     [data-landmark]::before {
-      content: attr(data-landmark);
-      position: absolute;
-      top: -11px;
-      left: 10px;
-      background: #4a7fcb;
-      color: #fff;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 1px 8px;
-      border-radius: 20px;
+      content: attr(data-landmark); position: absolute; top: -11px; left: 10px;
+      background: #4a7fcb; color: #fff; font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; padding: 1px 8px; border-radius: 20px;
     }
-    .demo-page {
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 260px;
-      gap: 1rem;
-      align-items: start;
-    }
+    .demo-page { max-width: 700px; margin: 0 auto; }
+    .two-col { display: grid; grid-template-columns: 1fr 260px; gap: 1rem; align-items: start; }
   </style>
 </head>
 <body>
@@ -55,17 +34,16 @@
   <div class="info">
     <strong>Screen reader shortcuts:</strong><br>
     VoiceOver macOS: <code>Ctrl + Opt + U</code> → Rotor → Landmarks<br>
-    NVDA Windows: <code>D</code> = next landmark &nbsp;·&nbsp; <code>Shift + D</code> = previous landmark<br>
+    NVDA Windows: <code>D</code> = next landmark &nbsp;·&nbsp; <code>Shift + D</code> = previous<br>
     Firefox: Tools → Browser Tools → Accessibility → look for "landmark" roles in the tree
   </div>
 
-  <p class="mt-2">The page below is a self-contained demo. Each dashed border shows one landmark region — this is purely visual annotation for the presentation. In a real page there would be no borders.</p>
+  <p class="mt-2">Each dashed border shows one landmark region — purely visual annotation for the presentation. In a real page there would be no borders.</p>
 
-  <!-- ===== DEMO PAGE ===== -->
   <div class="demo-page mt-3">
 
     <header data-landmark="&lt;header&gt; role=banner">
-      <nav data-landmark="&lt;nav&gt; role=navigation  aria-label='Main navigation'" aria-label="Main navigation">
+      <nav data-landmark="&lt;nav&gt; role=navigation · aria-label='Main navigation'" aria-label="Main navigation">
         <ul style="display:flex; gap:1.5rem; list-style:none; padding:0; margin:0;">
           <li><a href="#">Home</a></li>
           <li><a href="#">Articles</a></li>
@@ -75,28 +53,23 @@
     </header>
 
     <div class="two-col">
-
-      <main data-landmark="&lt;main&gt; role=main" id="demo-main">
-
+      <main data-landmark="&lt;main&gt; role=main">
         <section aria-labelledby="news-title">
           <h2 id="news-title">Latest articles</h2>
-
           <article>
             <h3>Accessibility is not optional</h3>
-            <p>The European Accessibility Act applies to private companies from 2025. Here is what that means for your frontend.</p>
+            <p>The European Accessibility Act applies to private companies from 2025.</p>
             <a href="#">Read more <span class="sr-only">about the Accessibility Act</span></a>
           </article>
-
           <article style="margin-top:1.25rem;">
             <h3>Focus management in single-page apps</h3>
-            <p>When the browser does not reload the page, you have to manage focus yourself. Here is how.</p>
+            <p>When the browser does not reload the page, you have to manage focus yourself.</p>
             <a href="#">Read more <span class="sr-only">about focus management</span></a>
           </article>
         </section>
-
       </main>
 
-      <aside data-landmark="&lt;aside&gt; role=complementary  aria-label='Related topics'" aria-label="Related topics">
+      <aside data-landmark="&lt;aside&gt; role=complementary · aria-label='Related topics'" aria-label="Related topics">
         <h2 style="font-size:0.95rem;">Related topics</h2>
         <ul style="padding-left:1.2rem; font-size:0.88rem;">
           <li><a href="#">WCAG 2.1 Quick Reference</a></li>
@@ -104,11 +77,10 @@
           <li><a href="#">axe DevTools</a></li>
         </ul>
       </aside>
-
     </div>
 
     <footer data-landmark="&lt;footer&gt; role=contentinfo">
-      <nav data-landmark="&lt;nav&gt; role=navigation  aria-label='Footer navigation'" aria-label="Footer navigation" style="margin-bottom:0;">
+      <nav data-landmark="&lt;nav&gt; role=navigation · aria-label='Footer navigation'" aria-label="Footer navigation" style="margin-bottom:0;">
         <ul style="display:flex; gap:1rem; list-style:none; padding:0; margin:0; font-size:0.82rem;">
           <li><a href="#">Imprint</a></li>
           <li><a href="#">Privacy</a></li>
@@ -118,23 +90,19 @@
       <p style="font-size:0.78rem; color:#555; margin-top:0.5rem;">© 2025 Example Corp</p>
     </footer>
 
-  </div><!-- /demo-page -->
+  </div>
 
   <section aria-labelledby="code-title" class="mt-3">
     <h2 id="code-title">The markup</h2>
     <pre><code>&lt;header&gt;
   &lt;nav aria-label="Main navigation"&gt;…&lt;/nav&gt;
 &lt;/header&gt;
-
 &lt;main&gt;
   &lt;section aria-labelledby="news-title"&gt;
     &lt;h2 id="news-title"&gt;Latest articles&lt;/h2&gt;
-    &lt;article&gt;…&lt;/article&gt;
   &lt;/section&gt;
 &lt;/main&gt;
-
 &lt;aside aria-label="Related topics"&gt;…&lt;/aside&gt;
-
 &lt;footer&gt;
   &lt;nav aria-label="Footer navigation"&gt;…&lt;/nav&gt;
 &lt;/footer&gt;</code></pre>
@@ -142,6 +110,5 @@
   </section>
 
 </main>
-
 </body>
 </html>

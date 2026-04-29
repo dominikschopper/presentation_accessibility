@@ -7,25 +7,7 @@
   <link rel="stylesheet" href="layout.css" />
   <style>
     .stars { font-size: 1.4rem; letter-spacing: 2px; }
-    .demo-card {
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 1.25rem;
-    }
-    .tag {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 1px 8px;
-      border-radius: 4px;
-      margin-left: 0.5rem;
-      vertical-align: middle;
-      font-family: monospace;
-    }
-    .tag-hidden { background: #fde8e4; color: #b3271b; }
-    .tag-sr     { background: #e2f5eb; color: #1a6b3a; }
-    .tag-vis    { background: #eef4ff; color: #2c3e6b; }
+    .demo-card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 1.25rem; }
   </style>
 </head>
 <body>
@@ -34,69 +16,54 @@
 
 <header class="page-header">
   <h1>06 — aria-hidden &amp; sr-only</h1>
-  <p class="subtitle">Compare what the screen reader announces for each pattern. Use the Accessibility Panel to inspect the tree.</p>
+  <p class="subtitle">Compare what the screen reader announces for each pattern.</p>
   <a href="index.html">← Back to overview</a>
 </header>
 
 <main id="main-content">
 
-  <!-- ===== STAR RATING ===== -->
   <section aria-labelledby="stars-title">
     <h2 id="stars-title">Star rating</h2>
-
     <div class="compare">
       <div>
-        <span class="label-bad">Bad — screen reader reads raw characters</span>
+        <span class="label-bad">Bad — raw characters read aloud</span>
         <div class="demo-card mt-1">
           <p class="stars">★★★☆☆</p>
-          <p style="font-size:0.83rem; color:#555; margin-top:0.5rem;">Screen reader announces: <em>"Black star, black star, black star, white star, white star"</em> — or similar noise depending on the AT.</p>
+          <p style="font-size:0.83rem; color:#555; margin-top:0.5rem;">Screen reader: <em>"Black star, black star, black star, white star, white star"</em></p>
           <pre style="margin-top:0.75rem;"><code>&lt;p&gt;★★★☆☆&lt;/p&gt;</code></pre>
         </div>
       </div>
-
       <div>
-        <span class="label-good">Good — visual + sr-only text</span>
+        <span class="label-good">Good — aria-hidden + sr-only</span>
         <div class="demo-card mt-1">
           <p>
             <span class="stars" aria-hidden="true">★★★☆☆</span>
-            <span class="tag tag-hidden">aria-hidden</span>
             <span class="sr-only">3 out of 5 stars</span>
-            <span class="tag tag-sr">sr-only</span>
           </p>
-          <p style="font-size:0.83rem; color:#555; margin-top:0.5rem;">Screen reader announces: <em>"3 out of 5 stars"</em> — clear and meaningful.</p>
+          <p style="font-size:0.83rem; color:#555; margin-top:0.5rem;">Screen reader: <em>"3 out of 5 stars"</em></p>
           <pre style="margin-top:0.75rem;"><code>&lt;span aria-hidden="true"&gt;★★★☆☆&lt;/span&gt;
-&lt;span class="sr-only"&gt;
-  3 out of 5 stars
-&lt;/span&gt;</code></pre>
+&lt;span class="sr-only"&gt;3 out of 5 stars&lt;/span&gt;</code></pre>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== DECORATIVE ICON IN BUTTON ===== -->
   <section aria-labelledby="icon-title">
     <h2 id="icon-title">Decorative icon next to text</h2>
-
     <div class="compare">
       <div>
-        <span class="label-bad">Bad — icon read aloud</span>
+        <span class="label-bad">Bad — icon read as noise</span>
         <div class="demo-card mt-1">
-          <button style="font-size:1rem;">
-            &#128190; Save document
-          </button>
-          <p style="font-size:0.83rem; color:#555; margin-top:0.75rem;">Screen reader: <em>"Floppy disk, Save document, button"</em> — the icon is redundant noise.</p>
+          <button style="font-size:1rem;">&#128190; Save document</button>
+          <p style="font-size:0.83rem; color:#555; margin-top:0.75rem;">Screen reader: <em>"Floppy disk, Save document, button"</em></p>
           <pre style="margin-top:0.75rem;"><code>&lt;button&gt;&#128190; Save document&lt;/button&gt;</code></pre>
         </div>
       </div>
-
       <div>
         <span class="label-good">Good — icon hidden from AT</span>
         <div class="demo-card mt-1">
-          <button style="font-size:1rem;">
-            <span aria-hidden="true">&#128190;</span>
-            Save document
-          </button>
-          <p style="font-size:0.83rem; color:#555; margin-top:0.75rem;">Screen reader: <em>"Save document, button"</em> — clean and unambiguous.</p>
+          <button style="font-size:1rem;"><span aria-hidden="true">&#128190;</span> Save document</button>
+          <p style="font-size:0.83rem; color:#555; margin-top:0.75rem;">Screen reader: <em>"Save document, button"</em></p>
           <pre style="margin-top:0.75rem;"><code>&lt;button&gt;
   &lt;span aria-hidden="true"&gt;&#128190;&lt;/span&gt;
   Save document
@@ -106,64 +73,50 @@
     </div>
   </section>
 
-  <!-- ===== THE TRAP: ARIA-HIDDEN ON FOCUSABLE ===== -->
   <section aria-labelledby="trap-title">
-    <h2 id="trap-title">The trap: aria-hidden on a focusable element</h2>
-    <p>If a focusable element is inside an <code>aria-hidden</code> container, keyboard users can still Tab to it — but the screen reader will not announce it. The focus disappears into a void.</p>
-
+    <h2 id="trap-title">The trap — aria-hidden on a focusable element</h2>
+    <p>Focusable elements inside an <code>aria-hidden</code> container are still reachable by Tab — but the screen reader won't announce them. Focus disappears into a void.</p>
     <div class="compare mt-2">
       <div>
-        <span class="label-bad">Bad — focusable button hidden from AT</span>
+        <span class="label-bad">Bad — button hidden from AT but reachable</span>
         <div class="demo-card mt-1">
-          <div aria-hidden="true" style="border: 2px dashed #f5b4ae; padding: 0.75rem; border-radius: 6px;">
+          <div aria-hidden="true" style="border:2px dashed #f5b4ae; padding:0.75rem; border-radius:6px;">
             <p style="font-size:0.82rem; font-family:monospace; margin-bottom:0.5rem;">aria-hidden="true" on this container</p>
-            <button>I am reachable by Tab but silent to AT</button>
+            <button>Tab reaches me — AT says nothing</button>
           </div>
-          <p style="font-size:0.83rem; color:#b3271b; margin-top:0.5rem; font-weight:600;">Tab into this area — focus lands on the button but the screen reader says nothing.</p>
           <pre style="margin-top:0.75rem;"><code>&lt;div aria-hidden="true"&gt;
   &lt;button&gt;Dangerous!&lt;/button&gt;
 &lt;/div&gt;</code></pre>
         </div>
       </div>
-
       <div>
-        <span class="label-good">Good — aria-hidden only on truly decorative elements</span>
+        <span class="label-good">Good — aria-hidden only on decorative element</span>
         <div class="demo-card mt-1">
-          <div style="border: 2px dashed #a3d9b8; padding: 0.75rem; border-radius: 6px;">
-            <p style="font-size:0.82rem; margin-bottom:0.5rem;">No aria-hidden on this container</p>
-            <p><span aria-hidden="true" style="font-size:1.2rem;">&#9654;</span> <span class="sr-only">Play video:</span> Introduction to WCAG</p>
-            <button class="mt-1">Play</button>
-          </div>
-          <p style="font-size:0.83rem; color:#1a6b3a; margin-top:0.5rem; font-weight:600;">aria-hidden is only on the decorative icon — the button is fully accessible.</p>
-          <pre style="margin-top:0.75rem;"><code>&lt;p&gt;
-  &lt;span aria-hidden="true"&gt;&#9654;&lt;/span&gt;
-  &lt;span class="sr-only"&gt;Play video:&lt;/span&gt;
-  Introduction to WCAG
-&lt;/p&gt;
+          <p><span aria-hidden="true" style="font-size:1.2rem;">&#9654;</span> <span class="sr-only">Play video:</span> Introduction to WCAG</p>
+          <button class="mt-1">Play</button>
+          <pre style="margin-top:0.75rem;"><code>&lt;span aria-hidden="true"&gt;&#9654;&lt;/span&gt;
+&lt;span class="sr-only"&gt;Play video:&lt;/span&gt;
+Introduction to WCAG
 &lt;button&gt;Play&lt;/button&gt;</code></pre>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== SR-ONLY CSS ===== -->
   <section aria-labelledby="sronly-title">
     <h2 id="sronly-title">The sr-only pattern</h2>
     <pre><code>.sr-only {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
 }</code></pre>
-    <p class="mt-1" style="font-size:0.85rem; color:#555;">Visually invisible, but present in the accessibility tree. Do not use <code>display:none</code> or <code>visibility:hidden</code> — those remove the element from the AT as well.</p>
+    <p class="mt-1" style="font-size:0.85rem; color:#555;">Visually invisible, but present in the accessibility tree. Never use <code>display:none</code> or <code>visibility:hidden</code> — those remove the element from the AT entirely.</p>
   </section>
 
 </main>
-
 </body>
 </html>
