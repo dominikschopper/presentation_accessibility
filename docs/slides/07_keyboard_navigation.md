@@ -1,12 +1,18 @@
+## <kbd>Keyboard</kbd> all the things
+
+the two rules of keyboard navigation:
+
+- all interactive elements should be reachable by keyboard!<!-- .element: class="c-grey-light fragment highlight-red" -->
+- all Elements that are reached by a keyboard should be highlighted!<!-- .element: class="c-grey-light fragment highlight-blue" -->
+
+---
+
 ## tabindex — Three Values
 
-| Value | Meaning |
-|------|-----------|
-| `0` | Add to natural tab order |
-| `-1` | Programmatically focusable, not reachable via Tab |
-| `> 0` | **Never use** — destroys the natural tab order |
+Keyboard navigation is usually done with <kbd> &map; </kbd>
 
-**Interactive card: action via a real interactive element**
+**e.g. interactive card: action via a real interactive element**
+
 ```html
 <article class="card">
   <h3>Title</h3>
@@ -14,6 +20,15 @@
   <a href="/detail/42">Read more</a>
 </article>
 ```
+manually set a `tabindex` to include/exclude elements from being reached
+via keyboard
+
+| Value | Meaning                                           |
+|-------|---------------------------------------------------|
+| `0`   | Add to natural tab order                          |
+| `-1`  | Programmatically focusable, not reachable via Tab |
+| `> 0` | **Never use** — destroys the natural tab order    |
+
 
 ---
 
@@ -38,34 +53,5 @@
 }
 ```
 
-The contrast requirement also applies to the focus ring: 3 : 1 against its surroundings (WCAG 2.4.11).
-
----
-
-## Focus on Route Change in Vue
-
-SPAs do not load a new page — the browser does not know the content has changed.
-Screen readers stay silent, focus remains on the clicked link.
-
-**Move focus to main content after navigation**
-```ts
-// router/index.ts
-router.afterEach((to) => {
-  nextTick(() => {
-    document.title = `${to.meta.title} – App name`
-
-    const main = document.querySelector('#main-content') as HTMLElement
-    main?.setAttribute('tabindex', '-1')
-    main?.focus()
-    main?.removeAttribute('tabindex')
-  })
-})
-```
-
-```html
-<!-- App.vue -->
-<main id="main-content">
-  <RouterView />
-</main>
-```
+The contrast requirement also applies to the focus ring: `3:1` against its surroundings (WCAG 2.4.11).
 

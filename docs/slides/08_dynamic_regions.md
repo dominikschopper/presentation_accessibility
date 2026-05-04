@@ -50,6 +50,8 @@ Without `aria-atomic`, the screen reader reads only the **changed part** of the 
 
 ## Live Region Composable (Vue 3)
 
+think toasts and the like
+
 ```ts
 // composables/useAnnouncer.ts
 import { ref, nextTick } from 'vue'
@@ -66,19 +68,26 @@ export function useAnnouncer() {
 }
 ```
 
-```html
+---
+
+```vue
+<script setup>
+const { message } = useAnnouncer()
+</script>
+<template>
 <!-- App.vue — registered once globally -->
-<p role="status" aria-live="polite" aria-atomic="true" class="sr-only">
+<p role="status" aria-live="polite" aria-atomic="true">
   {{ message }}
 </p>
+</template>
 ```
 
 ```ts
 // In any component
-const { announce } = useAnnouncer()
+const { announce } = useAnnouncer();
 async function save() {
-  await api.save(data)
-  announce('Changes have been saved.')
+  await api.save(data);
+  announce('Changes have been saved.');
 }
 ```
 
@@ -125,18 +134,15 @@ A reusable composable using `useTemplateRef` (Vue 3.5+):
 
 ```ts
 // composables/useFormA11y.ts
-import { useTemplateRef, nextTick } from 'vue'
+import { type Ref, nextTick } from 'vue'
 
-export function useFormA11y(refName: string) {
-  const formEl = useTemplateRef<HTMLFormElement>(refName)
-
+export function useFormA11y(formEl: Ref<HTMLFormElement | null>) {
   function focusFirstError() {
     nextTick(() => {
       const first = formEl.value?.querySelector<HTMLElement>('[aria-invalid="true"]')
       first?.focus()
     })
   }
-
   return { focusFirstError }
 }
 ```
@@ -153,15 +159,17 @@ export function useFormA11y(refName: string) {
 ```
 
 ```ts
-const { focusFirstError } = useFormA11y('contactForm')
+const { focusFirstError } = useFormA11y(useTemplateRef('contactForm'));
 
 async function submit() {
-  const result = await validate()
-  if (!result.valid) focusFirstError()
+  const result = await validate();
+  if (!result.valid) {
+    focusFirstError();
+  }
 }
 ```
 
-The composable works for any form — pass the template ref name, it handles the rest.
+The composable works for any form — pass the template ref, it handles the rest.
 
 ---
 
@@ -226,6 +234,9 @@ That is what the `inert` attribute is for.
   </dialog>
 </Teleport>
 ```
+---
+
+failsafe `aria-hidden="inert"` on main
 
 ```ts
 const dialogEl = useTemplateRef<HTMLDialogElement>('dialogEl')
@@ -254,9 +265,9 @@ function onClose() {
 
 |                     | `aria-hidden="true"` | `inert` |
 |---------------------|----------------------|---------|
-| AT access blocked   |           ✅         |   ✅    |
-| Tab focus blocked   |           ❌         |   ✅    |
-| Mouse click blocked |           ❌         |   ✅    |
+| AT access blocked   |           Yes        |   Yes   |
+| Tab focus blocked   |           No         |   Yes   |
+| Mouse click blocked |           No         |   Yes   |
 | Browser support     |       excellent.     |  good<br/>(Chrome 102+, FF 112+, Safari 15.5+) |
 
 `inert` is the better choice for modal backgrounds — it blocks everything at once.
