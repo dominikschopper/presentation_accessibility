@@ -132,7 +132,8 @@ possible **`autocomplete`** values are `given-name`<!-- .element: class="bg-pale
 
 ## The Accessibility Tree
 
-The browser builds an **Accessibility Tree** in parallel with the DOM — this is what screen readers, voice control software, and Braille displays read.
+The browser builds an **Accessibility Tree** in parallel with the DOM —
+this is what screen readers, voice control software, and Braille displays read.
 
 Each DOM node has (or does not have):
 - **Role** — what is it? (button, heading, landmark…)
