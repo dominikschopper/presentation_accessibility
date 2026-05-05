@@ -4,7 +4,7 @@
 
 **Writing semantically correct HTML is hard:**
 - Which element actually describes this content?
-- When is `<section>` appropriate, when is `<div>`?
+- When is `<article>` appropriate, when is `<div>`?
 - Where does a navigation start and end?
 - How do headings nest correctly across components?
 
@@ -62,8 +62,8 @@ if this button leads somewhere use
 ### More Examples
 
 ```html
-<abbr title="World Health Organization">WHO</abbr>
-<time datetime="2025-01-12">12 January 2025</time>
+The <abbr title="S-Invest Manager">SIM</abbr> is a main platform project.
+<time datetime="2025-01-23">23 January 2025</time>
 Press <kbd>Ctrl</kbd> + <kbd>S</kbd>
 The result is stored in <var>x</var>
 ```
@@ -71,7 +71,7 @@ The result is stored in <var>x</var>
 ```html
 <details>
   <summary>What is WCAG?</summary>
-  <p>The Web Content Accessibility Guidelines, published by the W3C…</p>
+  <p>The Web Content Accessibility Guidelines, published by the W3C...</p>
 </details>
 ```
 ---
