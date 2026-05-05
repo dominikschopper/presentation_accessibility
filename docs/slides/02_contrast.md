@@ -29,9 +29,12 @@ This affects not only colour-blind users — also: poor lighting, older monitors
 Contrast belongs in the design token documentation — not in the code review.
 
 ---
+## color contrast AA examples
+![color contrast visual](./assets/color_contrast_AA.png)
 
-## contrast examples
-![color contrast visual](./assets/color_contrast_visual.jpg)
+---
+## color contrast AAA examples
+![color contrast visual](./assets/color_contrast_AAA.png)
 
 ---
 
