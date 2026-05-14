@@ -1,3 +1,72 @@
+<!-- .slide: id="business-case" -->
+## The Business Case
+
+### Germany
+- **7.9 million** people with severe disabilities (Schwerbehinderung)
+- ~10% of the German population
+- Aging society: this number grows every year
+
+### Global Context
+- 1.3 billion people with disabilities worldwide (WHO)
+- $8+ trillion annual disposable income
+
+### Beyond Compliance
+- Accessible sites rank better in search engines (SEO)
+- Mobile-first design and a11y overlap significantly
+- Usability improvements benefit everyone
+
+> "Accessibility is not charity. It's good business."
+
+---
+
+<!-- .slide: id="legal" -->
+## Barrierefreiheitsstärkungsgesetz (BFSG)
+
+### The Deadline
+**June 28, 2025** — Websites and online shops must be accessible.
+
+### Who Must Comply?
+- All B2C digital products and services
+- Online shops, banking apps, e-commerce
+- Exception: Microenterprises (<10 employees, <2M€ revenue)
+
+### Consequences
+- Fines up to **€100,000**
+- Competitors can issue warnings (Abmahnungen)
+- Reputational damage
+
+### Standard Required
+- **WCAG 2.1 Level AA** (via EN 301 549)
+
+> The question is not IF but WHEN this affects your project.
+
+---
+
+<!-- .slide: id="primevue-not-enough" -->
+## PrimeVue Is Not Enough
+
+Using PrimeVue? Great foundation, but...
+
+### What PrimeVue Provides
+- Semantic markup for components ✓
+- ARIA roles and states ✓
+- Keyboard interaction patterns ✓
+
+### What YOU Still Own
+
+| Your Responsibility | Example |
+|---------------------|---------|
+| Heading hierarchy | Is your `<Card>` title an `<h2>` or `<h4>`? |
+| Color contrast | Your theme colors, not PrimeVue's |
+| Alt texts | Your images, your content |
+| Tab order | Your page layout |
+| Focus management | Your modal/drawer flows |
+| Live announcements | Your form validation, your toasts |
+
+> An accessible component used incorrectly is still inaccessible.
+
+---
+
 ## Who is actually affected?
 
 
