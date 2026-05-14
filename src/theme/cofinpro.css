@@ -500,6 +500,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
 .reveal h5,
 .reveal h6 {
   margin: var(--r-heading-margin);
+  margin-top: .25em;
   color: var(--r-heading-color);
   font-family: var(--r-heading-font);
   font-weight: var(--r-heading-font-weight);

@@ -10,10 +10,13 @@
 - 1.3 billion people with disabilities worldwide (WHO)
 - $8+ trillion annual disposable income
 
-### Beyond Compliance
+---
+
+## Beyond Compliance
 - Accessible sites rank better in search engines (SEO)
 - Mobile-first design and a11y overlap significantly
 - Usability improvements benefit everyone
+- semantic HTML is easier to understand and read
 
 > "Accessibility is not charity. It's good business."
 
@@ -22,23 +25,20 @@
 <!-- .slide: id="legal" -->
 ## Barrierefreiheitsstärkungsgesetz (BFSG)
 
-### The Deadline
-**June 28, 2025** — Websites and online shops must be accessible.
-
 ### Who Must Comply?
 - All B2C digital products and services
 - Online shops, banking apps, e-commerce
-- Exception: Microenterprises (<10 employees, <2M€ revenue)
+
+<small>(Exception: Microenterprises: <10 employees, <2M€ revenue)</small>
 
 ### Consequences
-- Fines up to **€100,000**
-- Competitors can issue warnings (Abmahnungen)
+- Fines up to **€100,000** or Competitors (Abmahnungen)
 - Reputational damage
 
 ### Standard Required
 - **WCAG 2.1 Level AA** (via EN 301 549)
 
-> The question is not IF but WHEN this affects your project.
+> The question is not **IF** but **WHEN** this affects your project.
 
 ---
 
@@ -52,16 +52,18 @@ Using PrimeVue? Great foundation, but...
 - ARIA roles and states ✓
 - Keyboard interaction patterns ✓
 
+---
+
 ### What YOU Still Own
 
-| Your Responsibility | Example |
-|---------------------|---------|
-| Heading hierarchy | Is your `<Card>` title an `<h2>` or `<h4>`? |
-| Color contrast | Your theme colors, not PrimeVue's |
-| Alt texts | Your images, your content |
-| Tab order | Your page layout |
-| Focus management | Your modal/drawer flows |
-| Live announcements | Your form validation, your toasts |
+| Your Responsibility | Example                                     |
+|---------------------|---------------------------------------------|
+| Heading hierarchy   | Is your `<Card>` title an `<h2>` or `<h4>`? |
+| Color contrast      | Your theme colors, not PrimeVue's &rarr; UX |
+| Alt texts           | Your images, your content                   |
+| Tab order           | Your page layout                            |
+| Focus management    | Your modal/drawer flows &rarr; UX           |
+| Live announcements  | Your form validation, your toasts           |
 
 > An accessible component used incorrectly is still inaccessible.
 
@@ -69,15 +71,13 @@ Using PrimeVue? Great foundation, but...
 
 ## Who is actually affected?
 
-
-- **Visual**: Blindness / Low vision / Colour blindness / Light sensitivity
-- **Motor**: Tremor / Paralysis / Missing limbs
-- **Cognitive**: Dyslexia / ADHD / Learning disabilities / Cognitive overload
-- **Auditory**: Deafness / Hard of hearing
-- **Temporary & situational**: Broken arm, shoulder ... / eye illnesses and problems
-
 > ~15 % of the population have a permanent impairment.
-> Temporary or situational ones affect everyone at some point.
+
+- Visual: Blindness / Low vision / Colour blindness / Light sensitivity<!-- .element: class="fragment" -->
+- Motor: Tremor / Paralysis / Missing limbs<!-- .element: class="fragment" -->
+- Cognitive: Dyslexia / ADHD / Learning disabilities / Cognitive overload<!-- .element: class="fragment" -->
+- Auditory: Deafness / Hard of hearing<!-- .element: class="fragment" -->
+- Temporary & situational: Broken arm, shoulder ... / eye illnesses and problems<!-- .element: class="fragment" -->
 
 ---
 
