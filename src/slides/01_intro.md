@@ -102,7 +102,7 @@ Four principles (**POUR**<!-- .element: class="c-blue" -->):
 
 ---
 
-## POUR Examples
+## POUR Examples 1/2
 
 - **Perceivable**:<br/>
   A fund's performance is not only indicated not by a green or red line, but also through text, captions,
@@ -110,6 +110,11 @@ Four principles (**POUR**<!-- .element: class="c-blue" -->):
 - **Operable**:<br/>
   A contact form can be used fully with a keyboard: input fields, checkboxes, error messages, and the submit
   button are accessible without a mouse.
+
+---
+
+## POUR Examples 2/2
+
 - **Understandable**:<br/>
   Instead of __“Transaction failed,”__<!-- .element: class="c-orange" --> the message says:<br/>
   __“The transfer could not be completed because the IBAN is incomplete. Please check the IBAN.”__<!-- .element: class="c-green" --><br/>
@@ -118,13 +123,13 @@ Four principles (**POUR**<!-- .element: class="c-blue" -->):
   but more specifically as<br/>
   __“View fund details”__<!-- .element: class="c-green" -->
 - **Robust**:<br/>
-  A button is technically a real `<button>` with the correct name, role, and state — not just a clickable `<div>`.
-  This makes it work reliably with screen readers, voice control, future browsers or (in the best cases) even without JS.
+  E.g. a button works in any browser/screen reader is technically a real `<button>` with the correct name, role, and state —
+  not just a clickable `<div>`.
 
 ---
 ## Accessibility is (like e.g. Security) a cross-cutting concern
 
-- **we as developers** can help build a11y into our apps, but we need UX and BA
+- **we as developers** can help build a11y into our apps, but we need **UX** and **BA**
 - **UX:** Behaviour of the components and the app in general as well as color contrast and Design
 - **BA:** texts and structure of the app
 
