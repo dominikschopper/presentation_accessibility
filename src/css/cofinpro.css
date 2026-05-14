@@ -438,18 +438,22 @@ section.has-dark-background h6 {
 
 .reveal h1 {
     font-size: var(--r-heading1-size);
+    margin-top: .5em;
 }
 
 .reveal h2 {
     font-size: var(--r-heading2-size);
+    margin-top: .25em;
 }
 
 .reveal h3 {
     font-size: var(--r-heading3-size);
+    margin-top: .25em;
 }
 
 .reveal h4 {
     font-size: var(--r-heading4-size);
+    margin-top: .25em;
 }
 
 .reveal h1 {
