@@ -60,6 +60,7 @@ WCAG [4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
 **GOOD: Hide decorative elements only**<!-- .element: class="c-green" -->
 ```html
 <svg aria-hidden="true" focusable="false">…</svg>
+```
 
 ---
 

@@ -1,3 +1,15 @@
+## Who is actually affected?
+
+> ~15 % of the population have a permanent impairment.
+
+- Visual: Blindness / Low vision / Colour blindness / Light sensitivity<!-- .element: class="fragment" -->
+- Motor: Tremor / Paralysis / Missing limbs<!-- .element: class="fragment" -->
+- Cognitive: Dyslexia / ADHD / Learning disabilities / Cognitive overload<!-- .element: class="fragment" -->
+- Auditory: Deafness / Hard of hearing<!-- .element: class="fragment" -->
+- Temporary & situational: Broken arm, shoulder ... / eye illnesses and problems<!-- .element: class="fragment" -->
+
+---
+
 <!-- .slide: id="business-case" -->
 ## The Business Case
 
@@ -42,38 +54,6 @@
 
 ---
 
-<!-- .slide: id="primevue-not-enough" -->
-## PrimeVue Is Not Enough
-
-Using PrimeVue? Great foundation, but...
-
-### What PrimeVue Provides
-- Semantic markup for components ✓
-- ARIA roles and states ✓
-- Keyboard interaction patterns ✓
-
-### What PrimeVue Does NOT Know
-- Your page structure & heading hierarchy
-- Your routing & focus management
-- Your business logic & error handling
-- Your content (alt texts, labels, announcements)
-
-> An accessible component used incorrectly is still inaccessible.
-
----
-
-## Who is actually affected?
-
-> ~15 % of the population have a permanent impairment.
-
-- Visual: Blindness / Low vision / Colour blindness / Light sensitivity<!-- .element: class="fragment" -->
-- Motor: Tremor / Paralysis / Missing limbs<!-- .element: class="fragment" -->
-- Cognitive: Dyslexia / ADHD / Learning disabilities / Cognitive overload<!-- .element: class="fragment" -->
-- Auditory: Deafness / Hard of hearing<!-- .element: class="fragment" -->
-- Temporary & situational: Broken arm, shoulder ... / eye illnesses and problems<!-- .element: class="fragment" -->
-
----
-
 ## WCAG 2.1 — The Standard
 
 Four principles (**POUR**<!-- .element: class="c-blue" -->):
@@ -92,50 +72,6 @@ Four principles (**POUR**<!-- .element: class="c-blue" -->):
 - **Level AAA** — Maximum accessibility; not always achievable
 
 > European Accessibility Act require Level AA and german law follows that.
-
----
-
-## POUR → What We Cover
-
-| Principle | Topics in this Presentation | WCAG Success Criteria |
-|-----------|----------------------------|----------------------|
-| **P**erceivable | [Contrast](#/contrast), Alt Texts, Labels | [1.1.1](https://www.w3.org/WAI/WCAG21/Understanding/non-text-content) / [1.4.3](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum) / [1.4.11](https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast) |
-| **O**perable | [Keyboard Navigation](#/keyboard) / Focus Styles / Modals | [2.1.1](https://www.w3.org/WAI/WCAG21/Understanding/keyboard) / [2.4.7](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible) / [2.4.11](https://www.w3.org/WAI/WCAG21/Understanding/focus-appearance) |
-| **U**nderstandable | [Forms & Errors](#/forms) / Labels / Error Messages | [3.3.1](https://www.w3.org/WAI/WCAG21/Understanding/error-identification) / [3.3.2](https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions) / [3.3.3](https://www.w3.org/WAI/WCAG21/Understanding/error-suggestion) |
-| **R**obust | [Semantic HTML](#/semantic-html) / [Landmarks](#/landmarks) / [ARIA](#/aria) / [Live Regions](#/live-regions) | [4.1.1](https://www.w3.org/WAI/WCAG21/Understanding/parsing) / [4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value) / [4.1.3](https://www.w3.org/WAI/WCAG21/Understanding/status-messages) |
-
-> all links go to [Success Criteria for WCAG2.1](https://www.w3.org/WAI/WCAG21/Understanding/) sub chapters
-
----
-
-## Where to Look It Up
-
-- **WCAG 2.1 Quick Reference** (filterable by level & technique):<br/>
-  https://www.w3.org/WAI/WCAG21/quickref/
-
-- **Success Criteria for WCAG2.1**<br/>
-  https://www.w3.org/WAI/WCAG21/Understanding/
-
-- **ARIA Authoring Practices Guide** (patterns & examples):<br/>
-  https://www.w3.org/WAI/ARIA/apg/
-
-- **MDN Accessibility**:<br/>
-  https://developer.mozilla.org/en-US/docs/Web/Accessibility
-
-- **PrimeVue Accessibility Docs**:<br/>
-  https://primevue.org/accessibility/
-
----
-
-## Accessibility is (like e.g. Security) a cross-cutting concern
-
-- **we as developers** can help build a11y into our apps, but we need **UX** and **BA**
-- **UX:** Behaviour of the components and the app in general as well as color contrast and Design
-- **BA:** texts and structure of the app
-
-**Accessibility has to be built into the App/Website/Forms from the ground up!**<!-- .element: class="c-orange fragment" -->
-
-**But we can make sure by using _semantic html_<!-- .element: class="c-green" -->**<!-- .element: class="c-blue fragment" -->
 
 ---
 
@@ -248,3 +184,67 @@ defineProps<{
 - Manage global state (modals, toasts)
 
 > Dumb components are portable. Smart components orchestrate them.
+
+---
+
+<!-- .slide: id="primevue-not-enough" -->
+## PrimeVue Is Not Enough
+
+Using PrimeVue? Great foundation, but...
+
+### What PrimeVue Provides
+- Semantic markup for components ✓
+- ARIA roles and states ✓
+- Keyboard interaction patterns ✓
+
+### What PrimeVue Does NOT Know
+- Your page structure & heading hierarchy
+- Your routing & focus management
+- Your business logic & error handling
+- Your content (alt texts, labels, announcements)
+
+> An accessible component used incorrectly is still inaccessible.
+
+---
+
+## Accessibility is (like e.g. Security) a cross-cutting concern
+
+- **we as developers** can help build a11y into our apps, but we need **UX** and **BA**
+- **UX:** Behaviour of the components and the app in general as well as color contrast and Design
+- **BA:** texts and structure of the app
+
+**Accessibility has to be built into the App/Website/Forms from the ground up!**<!-- .element: class="c-orange fragment" -->
+
+**But we can make sure by using _semantic html_<!-- .element: class="c-green" -->**<!-- .element: class="c-blue fragment" -->
+
+---
+
+## POUR → What We Cover
+
+| Principle | Topics in this Presentation | WCAG Success Criteria |
+|-----------|----------------------------|----------------------|
+| **P**erceivable | [Contrast](#/contrast), Alt Texts, Labels | [1.1.1](https://www.w3.org/WAI/WCAG21/Understanding/non-text-content) / [1.4.3](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum) / [1.4.11](https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast) |
+| **O**perable | [Keyboard Navigation](#/keyboard) / Focus Styles / Modals | [2.1.1](https://www.w3.org/WAI/WCAG21/Understanding/keyboard) / [2.4.7](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible) / [2.4.11](https://www.w3.org/WAI/WCAG21/Understanding/focus-appearance) |
+| **U**nderstandable | [Forms & Errors](#/forms) / Labels / Error Messages | [3.3.1](https://www.w3.org/WAI/WCAG21/Understanding/error-identification) / [3.3.2](https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions) / [3.3.3](https://www.w3.org/WAI/WCAG21/Understanding/error-suggestion) |
+| **R**obust | [Semantic HTML](#/semantic-html) / [Landmarks](#/landmarks) / [ARIA](#/aria) / [Live Regions](#/live-regions) | [4.1.1](https://www.w3.org/WAI/WCAG21/Understanding/parsing) / [4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value) / [4.1.3](https://www.w3.org/WAI/WCAG21/Understanding/status-messages) |
+
+> all links go to [Success Criteria for WCAG2.1](https://www.w3.org/WAI/WCAG21/Understanding/) sub chapters
+
+---
+
+## Where to Look It Up
+
+- **WCAG 2.1 Quick Reference** (filterable by level & technique):<br/>
+  https://www.w3.org/WAI/WCAG21/quickref/
+
+- **Success Criteria for WCAG2.1**<br/>
+  https://www.w3.org/WAI/WCAG21/Understanding/
+
+- **ARIA Authoring Practices Guide** (patterns & examples):<br/>
+  https://www.w3.org/WAI/ARIA/apg/
+
+- **MDN Accessibility**:<br/>
+  https://developer.mozilla.org/en-US/docs/Web/Accessibility
+
+- **PrimeVue Accessibility Docs**:<br/>
+  https://primevue.org/accessibility/
