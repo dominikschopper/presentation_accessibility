@@ -193,9 +193,9 @@ defineProps<{
 Using PrimeVue? Great foundation, but...
 
 ### What PrimeVue Provides
-- Semantic markup for components ✓
-- ARIA roles and states ✓
-- Keyboard interaction patterns ✓
+- Semantic markup for components
+- ARIA roles and states
+- Keyboard interaction patterns
 
 ### What PrimeVue Does NOT Know
 - Your page structure & heading hierarchy
