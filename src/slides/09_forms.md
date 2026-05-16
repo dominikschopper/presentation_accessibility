@@ -1,103 +1,7 @@
-<!-- .slide: id="live-regions" -->
-## Dynamic Content — <span class="c-blue">[R]</span> Robust + <span class="c-blue">[U]</span> Understandable
+<!-- .slide: id="forms" -->
+# Forms & Errors — <span class="c-blue">[U]</span> Understandable
 
-WCAG [4.1.3](https://www.w3.org/WAI/WCAG21/Understanding/status-messages) & [3.3.1](https://www.w3.org/WAI/WCAG21/Understanding/error-identification)
-
----
-
-## aria-live — Announcements for Screen Readers
-
-**Toast appears visually, but is silent for AT**
-```html
-<div class="toast" v-if="saved">Saved!</div>
-```
-
-**With aria-live — the region must already be in the DOM on load**
-```html
-<!-- App.vue — always rendered, never v-if! -->
-<p
-  role="status"
-  aria-live="polite"
-  aria-atomic="true"
-  class="sr-only"
->{{ announcement }}</p>
-```
-
-| Attribute | Value | When |
-|---|---|---|
-| `aria-live` | `polite` | Waits until AT is done — toasts, status messages |
-| `aria-live` | `assertive` | Interrupts immediately — **only** for critical errors |
-
----
-
-## aria-atomic — Reading the Right Portion
-
-Without `aria-atomic`, the screen reader reads only the **changed part** of the content.
-
-**Example: upload progress**
-```html
-<!-- atomic="false" (default): AT reads only "4" … "5" … "6" — no context -->
-<p role="status" aria-live="polite" aria-atomic="false">
-  {{ uploadedCount }} of {{ totalCount }} files uploaded
-</p>
-```
-
-```html
-<!-- atomic="true": AT reads "4 of 10 files uploaded" — understandable -->
-<p role="status" aria-live="polite" aria-atomic="true">
-  {{ uploadedCount }} of {{ totalCount }} files uploaded
-</p>
-```
-
-**Rule of thumb:**
-- `atomic="true"` — when the full text makes sense as a whole (status messages, counters)
-- `atomic="false"` (default) — when only new entries matter (logs, chat)
-
----
-
-## Live Region Composable (Vue 3)
-
-think toasts and the like
-
-```ts
-// composables/useAnnouncer.ts
-import { ref, nextTick } from 'vue'
-
-const message = ref('')
-
-export function useAnnouncer() {
-  function announce(text: string) {
-    // Force reset — otherwise AT won't re-read the same text
-    message.value = ''
-    nextTick(() => { message.value = text })
-  }
-  return { message, announce }
-}
-```
-
----
-
-```vue
-<script setup>
-const { message } = useAnnouncer()
-</script>
-<template>
-<!-- App.vue — registered once globally -->
-<p role="status" aria-live="polite" aria-atomic="true">
-  {{ message }}
-</p>
-</template>
-```
-
-```ts
-// In any component
-const { announce } = useAnnouncer();
-async function save() {
-  await api.save(data);
-  announce('Changes have been saved.');
-}
-```
-
+WCAG [3.3.1](https://www.w3.org/WAI/WCAG21/Understanding/error-identification), [3.3.2](https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions) & [3.3.3](https://www.w3.org/WAI/WCAG21/Understanding/error-suggestion)
 
 ---
 
@@ -199,7 +103,10 @@ The composable works for any form — pass the template ref, it handles the rest
 
 ---
 
-# Modals & Dialogs
+<!-- .slide: id="modals" -->
+# Modals & Dialogs — <span class="c-blue">[O]</span> Operable
+
+WCAG [2.1.1](https://www.w3.org/WAI/WCAG21/Understanding/keyboard) & [2.4.3](https://www.w3.org/WAI/WCAG21/Understanding/focus-order)
 
 ---
 
@@ -240,7 +147,7 @@ That is what the `inert` attribute is for.
 ```
 ---
 
-failsafe `aria-hidden="inert"` on main
+failsafe `inert` on main
 
 ```ts
 const dialogEl = useTemplateRef<HTMLDialogElement>('dialogEl')
