@@ -20,13 +20,13 @@
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
-<header class="page-header">
+<div class="page-header">
   <h1>01a — Div Soup (Bad)</h1>
   <p class="subtitle">Tab through this page and listen with a screen reader — there are no landmarks, no headings, no roles. Everything is a div.</p>
   <a href="index.html">← Back to overview</a>
-</header>
+</div>
 
-<main id="main-content">
+<div class="main" id="main-content">
 
   <div class="info">
     <strong>What to notice:</strong> Open the Firefox Accessibility Panel or Chrome Accessibility tab. The tree is nearly flat — no landmarks, no heading structure. A screen reader user has no way to orient themselves on this page.
@@ -60,7 +60,7 @@
 
   </div>
 
-  <section aria-labelledby="code-title">
+  <div aria-labelledby="code-title">
     <h2 id="code-title">The markup</h2>
     <pre><code>&lt;div class="nav"&gt;
   &lt;div tabindex="0"&gt;Home&lt;/div&gt;
@@ -78,9 +78,9 @@
       — no roles, no structure, no landmarks to jump to.
       Compare with <a href="01b-semantic-good.html">01b — Semantic HTML (Good)</a>.
     </p>
-  </section>
+  </div>
 
-</main>
+</div>
 
 </body>
 </html>

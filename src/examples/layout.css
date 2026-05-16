@@ -28,7 +28,7 @@ body {
 .page-header a:hover { text-decoration: underline; }
 .page-header a:focus-visible { outline: 2px solid #7ec8a0; outline-offset: 3px; border-radius: 2px; }
 
-main { max-width: 900px; margin: 2.5rem auto; padding: 0 1.5rem; }
+main, .main { max-width: 900px; margin: 2.5rem auto; padding: 0 1.5rem; }
 section { margin-bottom: 3rem; }
 section + section { border-top: 1px solid #ddd; padding-top: 2.5rem; }
 

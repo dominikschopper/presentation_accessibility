@@ -1,3 +1,10 @@
+<!-- .slide: id="contrast" -->
+## Contrast — <span class="c-blue">[P]</span> Perceivable
+
+WCAG [1.4.3](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum) & [1.4.11](https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast)
+
+---
+
 ## Contrast — WCAG Requirements
 
 | Content                         | Level AA       | Level AAA |

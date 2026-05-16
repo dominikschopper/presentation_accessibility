@@ -1,3 +1,10 @@
+<!-- .slide: id="live-regions" -->
+## Dynamic Content — <span class="c-blue">[R]</span> Robust + <span class="c-blue">[U]</span> Understandable
+
+WCAG [4.1.3](https://www.w3.org/WAI/WCAG21/Understanding/status-messages) & [3.3.1](https://www.w3.org/WAI/WCAG21/Understanding/error-identification)
+
+---
+
 ## aria-live — Announcements for Screen Readers
 
 **Toast appears visually, but is silent for AT**
@@ -93,7 +100,10 @@ async function save() {
 
 ---
 
-# Forms & Errors
+<!-- .slide: id="forms" -->
+# Forms & Errors — <span class="c-blue">[U]</span> Understandable
+
+WCAG [3.3.1](https://www.w3.org/WAI/WCAG21/Understanding/error-identification), [3.3.2](https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions) & [3.3.3](https://www.w3.org/WAI/WCAG21/Understanding/error-suggestion)
 
 ---
 

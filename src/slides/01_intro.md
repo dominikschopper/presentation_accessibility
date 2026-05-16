@@ -32,7 +32,7 @@
 <small>(Exception: Microenterprises: <10 employees, <2M€ revenue)</small>
 
 ### Consequences
-- Fines up to **€100,000** or Competitors (Abmahnungen)
+- Fines up to **€100,000** (from Competitors? Abmahnungen)
 - Reputational damage
 
 ### Standard Required
@@ -52,18 +52,11 @@ Using PrimeVue? Great foundation, but...
 - ARIA roles and states ✓
 - Keyboard interaction patterns ✓
 
----
-
-### What YOU Still Own
-
-| Your Responsibility | Example                                     |
-|---------------------|---------------------------------------------|
-| Heading hierarchy   | Is your `<Card>` title an `<h2>` or `<h4>`? |
-| Color contrast      | Your theme colors, not PrimeVue's &rarr; UX |
-| Alt texts           | Your images, your content                   |
-| Tab order           | Your page layout                            |
-| Focus management    | Your modal/drawer flows &rarr; UX           |
-| Live announcements  | Your form validation, your toasts           |
+### What PrimeVue Does NOT Know
+- Your page structure & heading hierarchy
+- Your routing & focus management
+- Your business logic & error handling
+- Your content (alt texts, labels, announcements)
 
 > An accessible component used incorrectly is still inaccessible.
 
@@ -102,37 +95,156 @@ Four principles (**POUR**<!-- .element: class="c-blue" -->):
 
 ---
 
-## POUR Examples 1/2
+## POUR → What We Cover
 
-- **Perceivable**:<br/>
-  A fund's performance is not only indicated not by a green or red line, but also through text, captions,
-  values, sufficient contrast, and screen reader information.
-- **Operable**:<br/>
-  A contact form can be used fully with a keyboard: input fields, checkboxes, error messages, and the submit
-  button are accessible without a mouse.
+| Principle | Topics in this Presentation | WCAG Success Criteria |
+|-----------|----------------------------|----------------------|
+| **P**erceivable | [Contrast](#/contrast), Alt Texts, Labels | [1.1.1](https://www.w3.org/WAI/WCAG21/Understanding/non-text-content) / [1.4.3](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum) / [1.4.11](https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast) |
+| **O**perable | [Keyboard Navigation](#/keyboard) / Focus Styles / Modals | [2.1.1](https://www.w3.org/WAI/WCAG21/Understanding/keyboard) / [2.4.7](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible) / [2.4.11](https://www.w3.org/WAI/WCAG21/Understanding/focus-appearance) |
+| **U**nderstandable | [Forms & Errors](#/forms) / Labels / Error Messages | [3.3.1](https://www.w3.org/WAI/WCAG21/Understanding/error-identification) / [3.3.2](https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions) / [3.3.3](https://www.w3.org/WAI/WCAG21/Understanding/error-suggestion) |
+| **R**obust | [Semantic HTML](#/semantic-html) / [Landmarks](#/landmarks) / [ARIA](#/aria) / [Live Regions](#/live-regions) | [4.1.1](https://www.w3.org/WAI/WCAG21/Understanding/parsing) / [4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value) / [4.1.3](https://www.w3.org/WAI/WCAG21/Understanding/status-messages) |
+
+> all links go to [Success Criteria for WCAG2.1](https://www.w3.org/WAI/WCAG21/Understanding/) sub chapters
+
+---
+
+## Where to Look It Up
+
+- **WCAG 2.1 Quick Reference** (filterable by level & technique):<br/>
+  https://www.w3.org/WAI/WCAG21/quickref/
+
+- **Success Criteria for WCAG2.1**<br/>
+  https://www.w3.org/WAI/WCAG21/Understanding/
+
+- **ARIA Authoring Practices Guide** (patterns & examples):<br/>
+  https://www.w3.org/WAI/ARIA/apg/
+
+- **MDN Accessibility**:<br/>
+  https://developer.mozilla.org/en-US/docs/Web/Accessibility
+
+- **PrimeVue Accessibility Docs**:<br/>
+  https://primevue.org/accessibility/
 
 ---
 
-## POUR Examples 2/2
-
-- **Understandable**:<br/>
-  Instead of __“Transaction failed,”__<!-- .element: class="c-orange" --> the message says:<br/>
-  __“The transfer could not be completed because the IBAN is incomplete. Please check the IBAN.”__<!-- .element: class="c-green" --><br/>
-  or<br/>
-  A button is not labeled generically as __“Learn more”__<!-- .element: class="c-orange" -->
-  but more specifically as<br/>
-  __“View fund details”__<!-- .element: class="c-green" -->
-- **Robust**:<br/>
-  E.g. a button works in any browser/screen reader is technically a real `<button>` with the correct name, role, and state —
-  not just a clickable `<div>`.
-
----
 ## Accessibility is (like e.g. Security) a cross-cutting concern
 
 - **we as developers** can help build a11y into our apps, but we need **UX** and **BA**
 - **UX:** Behaviour of the components and the app in general as well as color contrast and Design
 - **BA:** texts and structure of the app
 
-Accessibility has to build into the App/Website/Forms from the ground up!
+**Accessibility has to be built into the App/Website/Forms from the ground up!**<!-- .element: class="c-orange fragment" -->
 
-But we can make sure by using **semantic html**<sup>©️</sup>
+**But we can make sure by using _semantic html_<!-- .element: class="c-green" -->**<!-- .element: class="c-blue fragment" -->
+
+---
+
+## A11y by Component Type
+
+Three types of components — three areas of responsibility:
+
+| Type                 | Role           | A11y Responsibility         |
+|----------------------|----------------|-----------------------------|
+| **Pages / Views**    | Route endpoint | Layout, Structure & Context |
+| **Smart Components** | Business logic | Behavior & Feedback         |
+| **Dumb Components**  | Pure UI        | Semantic Markup             |
+
+---
+
+## Pages / Views — Structure & Context
+
+The page defines the **overall accessibility context**.
+
+```vue
+<template>
+  <h1>{{ pageTitle }}</h1>           <!-- Exactly one h1 per page -->
+
+  <main id="main-content">
+    <!-- some content with valid headings structure -->
+  </main>
+</template>
+```
+
+### Page Responsibilities
+- Set `document.title` on route change
+- Define the `<h1>` and provide heading context
+- Manage focus on navigation (focus `#main-content` or `<h1>`)
+- Define landmark structure (`<main>`, `<nav>`, `<aside>`)
+
+---
+
+## Smart Components — Behavior & Feedback
+
+Smart components handle **business logic** and **user feedback**.
+
+```vue
+<script setup>
+const { announce } = useAnnouncer()
+const { focusFirstError } = useFormA11y(formRef)
+
+async function onSubmit() {
+  const result = await validateAndSave()
+  if (!result.valid) {
+    focusFirstError()                 // Focus first invalid field
+  } else {
+    announce('Changes saved')         // Announce success accessibly
+  }
+}
+</script>
+```
+
+### Smart Component Responsibilities
+- Handle focus after async operations
+- Manage errors
+- Control modal/dialog open state and `inert` on background
+
+---
+
+## Dumb Components — Semantic Markup
+
+Dumb components are **a11y-ready building blocks**.
+
+```vue
+<script setup>
+defineProps<{
+  label: string
+  error?: string
+  required?: boolean
+}>()
+</script>
+
+<template>
+  <div class="field">
+    <label :for="id">
+      {{ label }}
+      <span v-if="required" aria-hidden="true"> *</span>
+    </label>
+    <input
+      :id="id"
+      :aria-invalid="error ? 'true' : undefined"
+      :aria-describedby="error ? `${id}-error` : undefined"
+      :aria-required="required"
+    />
+    <span v-if="error" :id="`${id}-error`" role="alert">
+      {{ error }}
+    </span>
+  </div>
+</template>
+```
+
+---
+
+## Dumb Components — Rules
+
+### Do
+- Use semantic HTML (`<button>`, `<a>`, `<input>`)
+- Set `aria-*` according to props
+- handle focus via prop or `defineExpose`
+- emit events
+
+### Don't
+- call backends or validate business logic
+- Hard-code heading levels
+- Manage global state (modals, toasts)
+
+> Dumb components are portable. Smart components orchestrate them.

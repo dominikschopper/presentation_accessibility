@@ -1,3 +1,10 @@
+<!-- .slide: id="landmarks" -->
+## Landmarks — <span class="c-blue">[R]</span> Robust
+
+WCAG [1.3.1](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships) & [2.4.1](https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks)
+
+---
+
 ## Landmark Regions — Navigation for Screen Reader Users
 
 Screen reader users do not read a page linearly —

@@ -1,3 +1,10 @@
+<!-- .slide: id="headings" -->
+## Headings — <span class="c-blue">[R]</span> Robust
+
+WCAG [1.3.1](https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships) & [2.4.6](https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels)
+
+---
+
 ## Heading Hierarchy
 
 **Bad — levels skipped, visual styling instead of semantics**

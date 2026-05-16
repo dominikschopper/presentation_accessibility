@@ -1,3 +1,10 @@
+<!-- .slide: id="aria" -->
+## ARIA — <span class="c-blue">[R]</span> Robust
+
+WCAG [4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
+
+---
+
 ## The First Rule of ARIA
 
 > "If you can use a native HTML element or attribute with the semantics and behaviour you require already built in, instead of re-purposing an element and adding an ARIA role, state or property — then do so."

@@ -1,3 +1,10 @@
+<!-- .slide: id="keyboard" -->
+## Keyboard — <span class="c-blue">[O]</span> Operable
+
+WCAG [2.1.1](https://www.w3.org/WAI/WCAG21/Understanding/keyboard), [2.4.7](https://www.w3.org/WAI/WCAG21/Understanding/focus-visible) & [2.4.11](https://www.w3.org/WAI/WCAG21/Understanding/focus-appearance)
+
+---
+
 ## <kbd>Keyboard</kbd> all the things
 
 the two rules of keyboard navigation:

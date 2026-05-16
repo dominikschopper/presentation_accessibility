@@ -1,6 +1,13 @@
+<!-- .slide: id="semantic-html" -->
+## Semantic HTML — <span class="c-blue">[R]</span> Robust
+
+WCAG [4.1.1](https://www.w3.org/WAI/WCAG21/Understanding/parsing) & [4.1.2](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value)
+
+---
+
 ## HTML is harder than it looks
 
-"Everyone knows HTML" — true. Writing valid HTML is easy.
+"Everyone knows HTML" — true. Writing syntactically valid HTML is easy.
 
 **Writing semantically correct HTML is hard:**
 - Which element actually describes this content?
@@ -8,10 +15,10 @@
 - Where does a navigation start and end?
 - How do headings nest correctly across components?
 
-HTML is the foundation of the Accessibility Tree.
+HTML is **the foundation** of the Accessibility Tree.
 If the HTML is wrong, ARIA attributes can do little to fix it.
 
-> "The first rule of ARIA: don't use ARIA if native HTML does the job."
+[example with bad HTML](./examples/01a-div-soup-bad.html)<!-- .element: target="_blank" -->
 
 ---
 
@@ -149,15 +156,17 @@ Each DOM node has (or does not have):
 
 ## Inspecting the Accessibility Tree
 
-**Chrome DevTools**
+**Chrome DevTools**<br/>
 Elements panel → open the **Accessibility** tab on the right → click any node in the DOM
 
-Or: DevTools → ⋮ → More Tools → **Accessibility**
-→ "Enable full-page accessibility tree" → toggle the icon at the top of the Elements panel
+Or: DevTools → [⋮] → More Tools → **Accessibility**
 
-**Firefox**
+"Enable full-page accessibility tree" → toggle the icon at the top of the Elements panel
+
+**Firefox**<br/>
 Tools → Browser Tools → **Accessibility**
-→ full tree, issue highlighting, tab order visualisation
+
+full tree, issue highlighting, tab order visualisation
 
 **To explore live:**
 - https://www.accessibility-developer-guide.com/examples/sensible-aria-usage/
