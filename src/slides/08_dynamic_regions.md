@@ -125,7 +125,7 @@ async function save() {
 
 ---
 
-## Error Feedback — Visible AND Audible
+## Error Feedback — Visible AND Audible 1/2
 
 **Error appears visually, AT is not informed**
 ```html
@@ -150,6 +150,10 @@ export function useFormA11y(formEl: Ref<HTMLFormElement | null>) {
   return { focusFirstError }
 }
 ```
+
+---
+
+## Error Feedback — Visible AND Audible 2/2
 
 ```html
 <!-- ContactForm.vue -->
