@@ -29,12 +29,16 @@ WCAG [3.3.1](https://www.w3.org/WAI/WCAG21/Understanding/error-identification), 
 
 ---
 
-## Error Feedback — Visible AND Audible
+## Error Feedback — Visible AND Audible 1/3
 
 **Error appears visually, AT is not informed**
 ```html
 <p class="error" v-if="error">{{ error }}</p>
 ```
+
+---
+
+## Error Feedback — Visible AND Audible 2/3
 
 **role="alert" + focus on first invalid field after submit**
 
@@ -65,6 +69,10 @@ export function useFormA11y(formEl: Ref<HTMLFormElement | null>) {
   </div>
 </form>
 ```
+
+---
+
+## Error Feedback — Visible AND Audible 3/3
 
 ```ts
 const { focusFirstError } = useFormA11y(useTemplateRef('contactForm'));
